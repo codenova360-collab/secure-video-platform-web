@@ -1,5 +1,6 @@
 import "server-only";
 import { cacheLife, cacheTag } from "next/cache";
+import { connection } from "next/server";
 import { serverEnv } from "../env.server";
 import { ApiError } from "./errors";
 import type {
@@ -12,7 +13,9 @@ import type {
 /**
  * Public catalog reads. The data is the same for every visitor, so it's
  * cached on the server for a few minutes (`use cache`) and never carries a
- * visitor's cookies.
+ * visitor's cookies. Each exported reader waits for a request first
+ * (`connection()`), so builds never call the API and the catalog is always
+ * filled at runtime from the cache. Errors aren't cached.
  */
 async function publicGet<T>(path: string): Promise<T> {
   const env = serverEnv();
@@ -50,24 +53,27 @@ function toSearch(query: CatalogQuery): string {
   return search ? `?${search}` : "";
 }
 
-export async function getCatalogVideos(
-  query: CatalogQuery,
-): Promise<CatalogVideoList> {
+async function cachedGet<T>(path: string): Promise<T> {
   "use cache";
   cacheLife("minutes");
   cacheTag("catalog");
-  return publicGet<CatalogVideoList>(`/catalog/videos${toSearch(query)}`);
+  return publicGet<T>(path);
+}
+
+export async function getCatalogVideos(
+  query: CatalogQuery,
+): Promise<CatalogVideoList> {
+  await connection();
+  return cachedGet<CatalogVideoList>(`/catalog/videos${toSearch(query)}`);
 }
 
 /** Null when the video doesn't exist or isn't published. */
 export async function getCatalogVideo(
   slug: string,
 ): Promise<CatalogVideoDetailResponse | null> {
-  "use cache";
-  cacheLife("minutes");
-  cacheTag("catalog");
+  await connection();
   try {
-    return await publicGet<CatalogVideoDetailResponse>(
+    return await cachedGet<CatalogVideoDetailResponse>(
       `/catalog/videos/${encodeURIComponent(slug)}`,
     );
   } catch (error) {
@@ -78,19 +84,16 @@ export async function getCatalogVideo(
 
 /**
  * Categories for the chip bar and guide. Never fails the page: if the API is
- * unreachable (e.g. during a build), returns an empty list cached briefly.
+ * unreachable, returns an empty list (and tries again on the next request).
  */
 export async function getCatalogCategories(): Promise<CatalogCategory[]> {
-  "use cache";
-  cacheTag("catalog");
+  await connection();
   try {
-    const { categories } = await publicGet<CatalogCategoryList>(
+    const { categories } = await cachedGet<CatalogCategoryList>(
       "/catalog/categories",
     );
-    cacheLife("minutes");
     return categories;
   } catch {
-    cacheLife("seconds");
     return [];
   }
 }

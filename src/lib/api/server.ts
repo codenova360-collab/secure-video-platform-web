@@ -14,8 +14,10 @@ import type { Customer, CustomerResponse } from "./types";
  * Reads request data, so callers must render inside <Suspense>.
  */
 export async function apiGet<T>(path: string): Promise<T> {
-  const env = serverEnv();
+  // Request data first: during prerendering this defers the read to request
+  // time, so builds don't need the API's environment.
   const [cookieStore, headerStore] = await Promise.all([cookies(), headers()]);
+  const env = serverEnv();
   const requestHeaders = new Headers({
     accept: "application/json",
     "x-proxy-secret": env.API_PROXY_SECRET,

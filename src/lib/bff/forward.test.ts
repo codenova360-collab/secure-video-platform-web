@@ -142,11 +142,23 @@ describe("forwardToApi (BFF proxy)", () => {
 
   it("with an allowlist, reaches only those prefixes (admin proxy)", async () => {
     const { config, fetchImpl } = setup();
-    const adminConfig = { ...config, blockedPrefixes: undefined, allowedPrefixes: ["admin"] };
-    const refused = await forwardToApi(new Request("https://admin.example.com/api/me"), ["me"], adminConfig);
+    const adminConfig = {
+      ...config,
+      blockedPrefixes: undefined,
+      allowedPrefixes: ["admin"],
+    };
+    const refused = await forwardToApi(
+      new Request("https://admin.example.com/api/me"),
+      ["me"],
+      adminConfig,
+    );
     expect(refused.status).toBe(404);
     expect(fetchImpl).not.toHaveBeenCalled();
-    await forwardToApi(new Request("https://admin.example.com/api/admin/me"), ["admin", "me"], adminConfig);
+    await forwardToApi(
+      new Request("https://admin.example.com/api/admin/me"),
+      ["admin", "me"],
+      adminConfig,
+    );
     expect(fetchImpl).toHaveBeenCalledOnce();
   });
 });

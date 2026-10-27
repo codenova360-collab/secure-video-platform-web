@@ -1,7 +1,6 @@
 "use client";
 
-import { usePathname } from "next/navigation";
-import { type ReactNode, useState } from "react";
+import { type ReactNode, useEffect, useState } from "react";
 import { IconButton } from "../ui/button";
 import { cn } from "../ui/cn";
 import { BottomTabs, GuideContent, MiniGuide } from "./guide";
@@ -22,20 +21,25 @@ const FULL_GUIDE_QUERY = "(min-width: 1312px)";
 export function AppShell({
   userArea,
   banner,
+  guideCategories,
   children,
 }: {
   userArea: ReactNode;
   banner?: ReactNode;
+  guideCategories?: ReactNode;
   children: ReactNode;
 }) {
-  const pathname = usePathname();
   const [fullGuideCollapsed, setFullGuideCollapsed] = useState(false);
-  // The drawer belongs to the page it was opened on, so it closes by itself
-  // when the route changes (no effect needed).
-  const [drawerPath, setDrawerPath] = useState<string | null>(null);
-  const drawerOpen = drawerPath === pathname;
-  const setDrawerOpen = (open: boolean) =>
-    setDrawerPath(open ? pathname : null);
+  const [drawerOpen, setDrawerOpen] = useState(false);
+
+  // Links in the drawer close it themselves; also close on back/forward.
+  // (The shell doesn't read the pathname, so it can prerender everywhere.)
+  useEffect(() => {
+    if (!drawerOpen) return;
+    const close = () => setDrawerOpen(false);
+    window.addEventListener("popstate", close);
+    return () => window.removeEventListener("popstate", close);
+  }, [drawerOpen]);
 
   const toggleGuide = () => {
     if (window.matchMedia(FULL_GUIDE_QUERY).matches) {
@@ -75,7 +79,7 @@ export function AppShell({
           !fullGuideCollapsed && "guide:block",
         )}
       >
-        <GuideContent />
+        <GuideContent categories={guideCategories} />
       </aside>
       {/* Mini guide (medium screens, or wide screens with the guide collapsed) */}
       <aside
@@ -110,7 +114,10 @@ export function AppShell({
               />
               <Logo />
             </div>
-            <GuideContent onNavigate={() => setDrawerOpen(false)} />
+            <GuideContent
+              categories={guideCategories}
+              onNavigate={() => setDrawerOpen(false)}
+            />
           </div>
         </div>
       )}

@@ -16,3 +16,11 @@ export interface ApiErrorBody {
     details?: { field?: string; messages: string[] }[];
   };
 }
+
+export type CatalogVideo = Schemas["CatalogVideoDto"];
+export type CatalogVideoList = Schemas["CatalogVideoListDto"];
+export type CatalogVideoDetail = Schemas["CatalogVideoDetailDto"];
+export type CatalogVideoDetailResponse =
+  Schemas["CatalogVideoDetailResponseDto"];
+export type CatalogCategory = Schemas["CatalogCategoryDto"];
+export type CatalogCategoryList = Schemas["CatalogCategoryListDto"];

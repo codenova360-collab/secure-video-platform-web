@@ -1,5 +1,6 @@
 import { Suspense } from "react";
 import { AppShell } from "@/components/shell/app-shell";
+import { GuideCategories } from "@/components/shell/guide-categories";
 import {
   EmailBanner,
   UserArea,
@@ -21,6 +22,11 @@ export default function MainLayout({ children }: LayoutProps<"/">) {
       banner={
         <Suspense fallback={null}>
           <EmailBanner />
+        </Suspense>
+      }
+      guideCategories={
+        <Suspense fallback={null}>
+          <GuideCategories />
         </Suspense>
       }
     >

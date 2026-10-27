@@ -4,1749 +4,2661 @@
  */
 
 export interface paths {
-    "/v1/auth/register": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Always 202 — never reveals whether the email already has an account. */
-        post: operations["CustomerAuthController_register"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
+  "/v1/auth/register": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    "/v1/auth/resend-verification": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post: operations["CustomerAuthController_resendVerification"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
+    get?: never;
+    put?: never;
+    /** Always 202 — never reveals whether the email already has an account. */
+    post: operations["CustomerAuthController_register"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/auth/resend-verification": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    "/v1/auth/verify-email": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post: operations["CustomerAuthController_verifyEmail"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
+    get?: never;
+    put?: never;
+    post: operations["CustomerAuthController_resendVerification"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/auth/verify-email": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    "/v1/auth/login": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post: operations["CustomerAuthController_login"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
+    get?: never;
+    put?: never;
+    post: operations["CustomerAuthController_verifyEmail"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/auth/login": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    "/v1/auth/logout": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Revokes the current session (if any) and clears the cookie. */
-        post: operations["CustomerAuthController_logout"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
+    get?: never;
+    put?: never;
+    post: operations["CustomerAuthController_login"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/auth/logout": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    "/v1/auth/forgot-password": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post: operations["CustomerAuthController_forgotPassword"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
+    get?: never;
+    put?: never;
+    /** Revokes the current session (if any) and clears the cookie. */
+    post: operations["CustomerAuthController_logout"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/auth/forgot-password": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    "/v1/auth/reset-password": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post: operations["CustomerAuthController_resetPassword"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
+    get?: never;
+    put?: never;
+    post: operations["CustomerAuthController_forgotPassword"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/auth/reset-password": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    "/v1/me": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["AccountController_me"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch: operations["AccountController_update"];
-        trace?: never;
+    get?: never;
+    put?: never;
+    post: operations["CustomerAuthController_resetPassword"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/me": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    "/v1/me/verification-email": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post: operations["AccountController_resendVerification"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
+    get: operations["AccountController_me"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch: operations["AccountController_update"];
+    trace?: never;
+  };
+  "/v1/me/verification-email": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    "/v1/me/password": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post: operations["AccountController_changePassword"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
+    get?: never;
+    put?: never;
+    post: operations["AccountController_resendVerification"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/me/password": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    "/v1/me/sessions": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["AccountController_listSessions"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
+    get?: never;
+    put?: never;
+    post: operations["AccountController_changePassword"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/me/sessions": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    "/v1/me/sessions/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post?: never;
-        delete: operations["AccountController_revokeSession"];
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
+    get: operations["AccountController_listSessions"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/me/sessions/{id}": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    "/v1/me/sessions/revoke-others": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post: operations["AccountController_revokeOtherSessions"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
+    get?: never;
+    put?: never;
+    post?: never;
+    delete: operations["AccountController_revokeSession"];
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/me/sessions/revoke-others": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    "/v1/me/delete": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post: operations["AccountController_deleteAccount"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
+    get?: never;
+    put?: never;
+    post: operations["AccountController_revokeOtherSessions"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/me/delete": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    "/v1/admin/auth/login": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post: operations["AdminAuthController_login"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
+    get?: never;
+    put?: never;
+    post: operations["AccountController_deleteAccount"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/admin/auth/login": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    "/v1/admin/auth/mfa": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post: operations["AdminAuthController_mfa"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
+    get?: never;
+    put?: never;
+    post: operations["AdminAuthController_login"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/admin/auth/mfa": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    "/v1/admin/auth/logout": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post: operations["AdminAuthController_logout"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
+    get?: never;
+    put?: never;
+    post: operations["AdminAuthController_mfa"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/admin/auth/logout": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    "/v1/admin/auth/accept-invite": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post: operations["AdminAuthController_acceptInvite"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
+    get?: never;
+    put?: never;
+    post: operations["AdminAuthController_logout"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/admin/auth/accept-invite": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    "/v1/admin/auth/forgot-password": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post: operations["AdminAuthController_forgotPassword"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
+    get?: never;
+    put?: never;
+    post: operations["AdminAuthController_acceptInvite"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/admin/auth/forgot-password": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    "/v1/admin/auth/reset-password": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post: operations["AdminAuthController_resetPassword"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
+    get?: never;
+    put?: never;
+    post: operations["AdminAuthController_forgotPassword"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/admin/auth/reset-password": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    "/v1/admin/me": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["AdminAccountController_me"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
+    get?: never;
+    put?: never;
+    post: operations["AdminAuthController_resetPassword"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/admin/me": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    "/v1/admin/me/password": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post: operations["AdminAccountController_changePassword"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
+    get: operations["AdminAccountController_me"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/admin/me/password": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    "/v1/admin/me/mfa/setup": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post: operations["AdminAccountController_setupMfa"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
+    get?: never;
+    put?: never;
+    post: operations["AdminAccountController_changePassword"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/admin/me/mfa/setup": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    "/v1/admin/me/mfa/enable": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post: operations["AdminAccountController_enableMfa"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
+    get?: never;
+    put?: never;
+    post: operations["AdminAccountController_setupMfa"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/admin/me/mfa/enable": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    "/v1/admin/me/mfa/disable": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post: operations["AdminAccountController_disableMfa"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
+    get?: never;
+    put?: never;
+    post: operations["AdminAccountController_enableMfa"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/admin/me/mfa/disable": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    "/v1/admin/me/mfa/recovery-codes": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post: operations["AdminAccountController_regenerateRecoveryCodes"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
+    get?: never;
+    put?: never;
+    post: operations["AdminAccountController_disableMfa"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/admin/me/mfa/recovery-codes": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    "/v1/admin/staff": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["StaffController_list"];
-        put?: never;
-        /** Creates the account and emails a 72-hour invitation link. */
-        post: operations["StaffController_invite"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
+    get?: never;
+    put?: never;
+    post: operations["AdminAccountController_regenerateRecoveryCodes"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/admin/staff": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    "/v1/admin/staff/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["StaffController_get"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch: operations["StaffController_update"];
-        trace?: never;
+    get: operations["StaffController_list"];
+    put?: never;
+    /** Creates the account and emails a 72-hour invitation link. */
+    post: operations["StaffController_invite"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/admin/staff/{id}": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    "/v1/admin/staff/{id}/suspend": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post: operations["StaffController_suspend"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
+    get: operations["StaffController_get"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch: operations["StaffController_update"];
+    trace?: never;
+  };
+  "/v1/admin/staff/{id}/suspend": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    "/v1/admin/staff/{id}/reactivate": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post: operations["StaffController_reactivate"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
+    get?: never;
+    put?: never;
+    post: operations["StaffController_suspend"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/admin/staff/{id}/reactivate": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    "/v1/admin/staff/{id}/resend-invite": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post: operations["StaffController_resendInvite"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
+    get?: never;
+    put?: never;
+    post: operations["StaffController_reactivate"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/admin/staff/{id}/resend-invite": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    "/v1/admin/staff/{id}/mfa/reset": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post: operations["StaffController_resetMfa"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
+    get?: never;
+    put?: never;
+    post: operations["StaffController_resendInvite"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/admin/staff/{id}/mfa/reset": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    "/v1/admin/staff/{id}/sessions/revoke": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post: operations["StaffController_revokeSessions"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
+    get?: never;
+    put?: never;
+    post: operations["StaffController_resetMfa"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/admin/staff/{id}/sessions/revoke": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    "/v1/admin/roles": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["RolesController_list"];
-        put?: never;
-        post: operations["RolesController_create"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
+    get?: never;
+    put?: never;
+    post: operations["StaffController_revokeSessions"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/admin/roles": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    "/v1/admin/roles/modules": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Modules and what Read/Write allow, for the permission matrix. */
-        get: operations["RolesController_modules"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
+    get: operations["RolesController_list"];
+    put?: never;
+    post: operations["RolesController_create"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/admin/roles/modules": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    "/v1/admin/roles/{id}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["RolesController_get"];
-        put?: never;
-        post?: never;
-        delete: operations["RolesController_remove"];
-        options?: never;
-        head?: never;
-        patch: operations["RolesController_update"];
-        trace?: never;
+    /** Modules and what Read/Write allow, for the permission matrix. */
+    get: operations["RolesController_modules"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/admin/roles/{id}": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    "/health": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Liveness: the process is running */
-        get: operations["HealthController_check"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
+    get: operations["RolesController_get"];
+    put?: never;
+    post?: never;
+    delete: operations["RolesController_remove"];
+    options?: never;
+    head?: never;
+    patch: operations["RolesController_update"];
+    trace?: never;
+  };
+  "/v1/catalog/categories": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    "/health/ready": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Readiness: the process can reach the database */
-        get: operations["HealthController_ready"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
+    get: operations["CatalogController_categories"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/catalog/videos": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
+    get: operations["CatalogController_list"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/catalog/videos/{slug}": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get: operations["CatalogController_detail"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/admin/categories": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** Video editors need categories too, so VIDEOS:READ also lists them. */
+    get: operations["AdminCategoriesController_list"];
+    put?: never;
+    post: operations["AdminCategoriesController_create"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/admin/categories/order": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put: operations["AdminCategoriesController_reorder"];
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/admin/categories/{id}": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    post?: never;
+    delete: operations["AdminCategoriesController_remove"];
+    options?: never;
+    head?: never;
+    patch: operations["AdminCategoriesController_update"];
+    trace?: never;
+  };
+  "/v1/admin/videos": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get: operations["AdminVideosController_list"];
+    put?: never;
+    post: operations["AdminVideosController_create"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/admin/videos/category-options": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** Category options for the video editor (VIDEOS:READ is enough). */
+    get: operations["AdminVideosController_categoryOptions"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/admin/videos/{id}": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get: operations["AdminVideosController_get"];
+    put?: never;
+    post?: never;
+    delete: operations["AdminVideosController_remove"];
+    options?: never;
+    head?: never;
+    patch: operations["AdminVideosController_update"];
+    trace?: never;
+  };
+  "/v1/admin/videos/bulk": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    post: operations["AdminVideosController_bulk"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/admin/videos/{id}/publish": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    post: operations["AdminVideosController_publish"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/admin/videos/{id}/unpublish": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    post: operations["AdminVideosController_unpublish"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/admin/media/images": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get: operations["MediaController_list"];
+    put?: never;
+    /** Step 1: get a 5-minute presigned URL to PUT the file to. */
+    post: operations["MediaController_createUpload"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/admin/media/images/{id}/complete": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /** Step 2: after the PUT, verify the file and make it usable. */
+    post: operations["MediaController_complete"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/health": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** Liveness: the process is running */
+    get: operations["HealthController_check"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/health/ready": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** Readiness: the process can reach the database */
+    get: operations["HealthController_ready"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
 }
 export type webhooks = Record<string, never>;
 export interface components {
-    schemas: {
-        RegisterDto: {
-            email: string;
-            password: string;
-            /** @example Kwame Mensah */
-            fullName: string;
-        };
-        AcceptedResponseDto: {
-            /**
-             * @description Always the same, whatever the outcome, so it reveals nothing.
-             * @enum {string}
-             */
-            status: "accepted";
-        };
-        EmailDto: {
-            /** @example kwame.mensah@example.com */
-            email: string;
-        };
-        TokenDto: {
-            token: string;
-        };
-        CustomerDto: {
-            id: string;
-            email: string;
-            fullName: string;
-            phone: string | null;
-            emailVerified: boolean;
-            createdAt: string;
-        };
-        CustomerResponseDto: {
-            user: components["schemas"]["CustomerDto"];
-        };
-        LoginDto: {
-            email: string;
-            password: string;
-        };
-        ResetPasswordDto: {
-            token: string;
-            password: string;
-        };
-        UpdateProfileDto: {
-            fullName?: string;
-            /** @description International format, e.g. "+233 24 123 4567". Send null to remove. */
-            phone?: string | null;
-        };
-        ChangePasswordDto: {
-            currentPassword: string;
-            newPassword: string;
-        };
-        SessionDto: {
-            id: string;
-            createdAt: string;
-            lastUsedAt: string;
-            ip: string | null;
-            userAgent: string | null;
-            /** @description True for the session making this request. */
-            current: boolean;
-        };
-        SessionListDto: {
-            sessions: components["schemas"]["SessionDto"][];
-        };
-        PasswordConfirmationDto: {
-            password: string;
-        };
-        AdminLoginDto: {
-            email: string;
-            password: string;
-        };
-        AdminRoleSummaryDto: {
-            id: string;
-            name: string;
-            isSuperAdmin: boolean;
-        };
-        AdminProfileDto: {
-            /**
-             * @description Module → access level. Empty for super admins (they have everything).
-             * @example {
-             *       "VIDEOS": "WRITE",
-             *       "DASHBOARD": "READ"
-             *     }
-             */
-            permissions: {
-                [key: string]: "READ" | "WRITE";
-            };
-            id: string;
-            email: string;
-            fullName: string;
-            role: components["schemas"]["AdminRoleSummaryDto"];
-            mfaEnabled: boolean;
-            lastLoginAt: string | null;
-        };
-        AdminLoginResponseDto: {
-            /** @enum {string} */
-            status: "authenticated" | "mfa_required";
-            /** @description Present when `status` is `authenticated`. */
-            admin?: components["schemas"]["AdminProfileDto"];
-        };
-        MfaCodeDto: {
-            code: string;
-        };
-        AdminMeResponseDto: {
-            admin: components["schemas"]["AdminProfileDto"];
-            /** @description Unused recovery codes left (0 when MFA is off). */
-            recoveryCodesRemaining: number;
-        };
-        MfaSetupResponseDto: {
-            /** @description Base32 secret, for manual entry in the authenticator app. */
-            secret: string;
-            /** @description Render as a QR code for the authenticator app. */
-            otpauthUri: string;
-        };
-        RecoveryCodesResponseDto: {
-            /** @description Shown once. Each code works a single time. */
-            recoveryCodes: string[];
-        };
-        MfaChangeDto: {
-            code: string;
-            password: string;
-        };
-        StaffDto: {
-            id: string;
-            email: string;
-            fullName: string;
-            /** @enum {string} */
-            status: "INVITED" | "ACTIVE" | "SUSPENDED";
-            role: {
-                id: string;
-                name: string;
-                isSuperAdmin: boolean;
-            };
-            mfaEnabled: boolean;
-            lastLoginAt: string | null;
-            createdAt: string;
-        };
-        StaffListDto: {
-            staff: components["schemas"]["StaffDto"][];
-        };
-        StaffResponseDto: {
-            staff: components["schemas"]["StaffDto"];
-        };
-        InviteStaffDto: {
-            email: string;
-            fullName: string;
-            /** Format: uuid */
-            roleId: string;
-        };
-        UpdateStaffDto: {
-            fullName?: string;
-            /** Format: uuid */
-            roleId?: string;
-        };
-        PermissionGrantDto: {
-            /** @enum {string} */
-            module: "DASHBOARD" | "VIDEOS" | "CATEGORIES" | "BUNDLES" | "PLANS" | "MEDIA" | "CUSTOMERS" | "ORDERS" | "PAYMENTS" | "ENTITLEMENTS" | "SUBSCRIPTIONS" | "AUDIT_LOGS";
-            /** @enum {string} */
-            access: "READ" | "WRITE";
-        };
-        RoleDto: {
-            id: string;
-            name: string;
-            description: string;
-            /** @description The built-in Super Admin role: full access, cannot be edited. */
-            isSystem: boolean;
-            permissions: components["schemas"]["PermissionGrantDto"][];
-            staffCount: number;
-            createdAt: string;
-            updatedAt: string;
-        };
-        RoleListDto: {
-            roles: components["schemas"]["RoleDto"][];
-        };
-        ModuleDescriptionDto: {
-            /** @enum {string} */
-            module: "DASHBOARD" | "VIDEOS" | "CATEGORIES" | "BUNDLES" | "PLANS" | "MEDIA" | "CUSTOMERS" | "ORDERS" | "PAYMENTS" | "ENTITLEMENTS" | "SUBSCRIPTIONS" | "AUDIT_LOGS";
-            label: string;
-            read: string;
-            write: string | null;
-        };
-        ModuleListDto: {
-            modules: components["schemas"]["ModuleDescriptionDto"][];
-        };
-        RoleResponseDto: {
-            role: components["schemas"]["RoleDto"];
-        };
-        CreateRoleDto: {
-            /** @example Content Manager */
-            name: string;
-            description?: string;
-            /** @description Modules not listed get no access. */
-            permissions: components["schemas"]["PermissionGrantDto"][];
-        };
-        UpdateRoleDto: {
-            name?: string;
-            description?: string;
-            /** @description When present, replaces the whole permission set. */
-            permissions?: components["schemas"]["PermissionGrantDto"][];
-        };
+  schemas: {
+    RegisterDto: {
+      email: string;
+      password: string;
+      /** @example Kwame Mensah */
+      fullName: string;
     };
-    responses: never;
-    parameters: never;
-    requestBodies: never;
-    headers: never;
-    pathItems: never;
+    AcceptedResponseDto: {
+      /**
+       * @description Always the same, whatever the outcome, so it reveals nothing.
+       * @enum {string}
+       */
+      status: "accepted";
+    };
+    EmailDto: {
+      /** @example kwame.mensah@example.com */
+      email: string;
+    };
+    TokenDto: {
+      token: string;
+    };
+    CustomerDto: {
+      id: string;
+      email: string;
+      fullName: string;
+      phone: string | null;
+      emailVerified: boolean;
+      createdAt: string;
+    };
+    CustomerResponseDto: {
+      user: components["schemas"]["CustomerDto"];
+    };
+    LoginDto: {
+      email: string;
+      password: string;
+    };
+    ResetPasswordDto: {
+      token: string;
+      password: string;
+    };
+    UpdateProfileDto: {
+      fullName?: string;
+      /** @description International format, e.g. "+233 24 123 4567". Send null to remove. */
+      phone?: string | null;
+    };
+    ChangePasswordDto: {
+      currentPassword: string;
+      newPassword: string;
+    };
+    SessionDto: {
+      id: string;
+      createdAt: string;
+      lastUsedAt: string;
+      ip: string | null;
+      userAgent: string | null;
+      /** @description True for the session making this request. */
+      current: boolean;
+    };
+    SessionListDto: {
+      sessions: components["schemas"]["SessionDto"][];
+    };
+    PasswordConfirmationDto: {
+      password: string;
+    };
+    AdminLoginDto: {
+      email: string;
+      password: string;
+    };
+    AdminRoleSummaryDto: {
+      id: string;
+      name: string;
+      isSuperAdmin: boolean;
+    };
+    AdminProfileDto: {
+      /**
+       * @description Module → access level. Empty for super admins (they have everything).
+       * @example {
+       *       "VIDEOS": "WRITE",
+       *       "DASHBOARD": "READ"
+       *     }
+       */
+      permissions: {
+        [key: string]: "READ" | "WRITE";
+      };
+      id: string;
+      email: string;
+      fullName: string;
+      role: components["schemas"]["AdminRoleSummaryDto"];
+      mfaEnabled: boolean;
+      lastLoginAt: string | null;
+    };
+    AdminLoginResponseDto: {
+      /** @enum {string} */
+      status: "authenticated" | "mfa_required";
+      /** @description Present when `status` is `authenticated`. */
+      admin?: components["schemas"]["AdminProfileDto"];
+    };
+    MfaCodeDto: {
+      code: string;
+    };
+    AdminMeResponseDto: {
+      admin: components["schemas"]["AdminProfileDto"];
+      /** @description Unused recovery codes left (0 when MFA is off). */
+      recoveryCodesRemaining: number;
+    };
+    MfaSetupResponseDto: {
+      /** @description Base32 secret, for manual entry in the authenticator app. */
+      secret: string;
+      /** @description Render as a QR code for the authenticator app. */
+      otpauthUri: string;
+    };
+    RecoveryCodesResponseDto: {
+      /** @description Shown once. Each code works a single time. */
+      recoveryCodes: string[];
+    };
+    MfaChangeDto: {
+      code: string;
+      password: string;
+    };
+    StaffDto: {
+      id: string;
+      email: string;
+      fullName: string;
+      /** @enum {string} */
+      status: "INVITED" | "ACTIVE" | "SUSPENDED";
+      role: {
+        id: string;
+        name: string;
+        isSuperAdmin: boolean;
+      };
+      mfaEnabled: boolean;
+      lastLoginAt: string | null;
+      createdAt: string;
+    };
+    StaffListDto: {
+      staff: components["schemas"]["StaffDto"][];
+    };
+    StaffResponseDto: {
+      staff: components["schemas"]["StaffDto"];
+    };
+    InviteStaffDto: {
+      email: string;
+      fullName: string;
+      /** Format: uuid */
+      roleId: string;
+    };
+    UpdateStaffDto: {
+      fullName?: string;
+      /** Format: uuid */
+      roleId?: string;
+    };
+    PermissionGrantDto: {
+      /** @enum {string} */
+      module:
+        | "DASHBOARD"
+        | "VIDEOS"
+        | "CATEGORIES"
+        | "BUNDLES"
+        | "PLANS"
+        | "MEDIA"
+        | "CUSTOMERS"
+        | "ORDERS"
+        | "PAYMENTS"
+        | "ENTITLEMENTS"
+        | "SUBSCRIPTIONS"
+        | "AUDIT_LOGS";
+      /** @enum {string} */
+      access: "READ" | "WRITE";
+    };
+    RoleDto: {
+      id: string;
+      name: string;
+      description: string;
+      /** @description The built-in Super Admin role: full access, cannot be edited. */
+      isSystem: boolean;
+      permissions: components["schemas"]["PermissionGrantDto"][];
+      staffCount: number;
+      createdAt: string;
+      updatedAt: string;
+    };
+    RoleListDto: {
+      roles: components["schemas"]["RoleDto"][];
+    };
+    ModuleDescriptionDto: {
+      /** @enum {string} */
+      module:
+        | "DASHBOARD"
+        | "VIDEOS"
+        | "CATEGORIES"
+        | "BUNDLES"
+        | "PLANS"
+        | "MEDIA"
+        | "CUSTOMERS"
+        | "ORDERS"
+        | "PAYMENTS"
+        | "ENTITLEMENTS"
+        | "SUBSCRIPTIONS"
+        | "AUDIT_LOGS";
+      label: string;
+      read: string;
+      write: string | null;
+    };
+    ModuleListDto: {
+      modules: components["schemas"]["ModuleDescriptionDto"][];
+    };
+    RoleResponseDto: {
+      role: components["schemas"]["RoleDto"];
+    };
+    CreateRoleDto: {
+      /** @example Content Manager */
+      name: string;
+      description?: string;
+      /** @description Modules not listed get no access. */
+      permissions: components["schemas"]["PermissionGrantDto"][];
+    };
+    UpdateRoleDto: {
+      name?: string;
+      description?: string;
+      /** @description When present, replaces the whole permission set. */
+      permissions?: components["schemas"]["PermissionGrantDto"][];
+    };
+    CatalogCategoryDto: {
+      name: string;
+      slug: string;
+      description: string;
+      videoCount: number;
+    };
+    CatalogCategoryListDto: {
+      categories: components["schemas"]["CatalogCategoryDto"][];
+    };
+    MoneyDto: {
+      /** @example 1500 */
+      amountMinor: string;
+      /**
+       * @example GHS
+       * @enum {string}
+       */
+      currency: "GHS";
+    };
+    PublicCategoryRefDto: {
+      name: string;
+      slug: string;
+    };
+    PublicImageDto: {
+      url: string;
+      width: number | null;
+      height: number | null;
+    };
+    CatalogVideoDto: {
+      id: string;
+      slug: string;
+      title: string;
+      /** @description Up to ~160 characters of the description. */
+      summary: string;
+      /** @enum {string} */
+      accessType: "FREE" | "PAID";
+      /** @description Null for free videos. */
+      price: components["schemas"]["MoneyDto"] | null;
+      /** @description Days of access after purchase; null for lifetime (or free). */
+      accessDurationDays: number | null;
+      categories: components["schemas"]["PublicCategoryRefDto"][];
+      thumbnail: components["schemas"]["PublicImageDto"] | null;
+      durationSeconds: number | null;
+      publishedAt: string;
+    };
+    CatalogVideoListDto: {
+      videos: components["schemas"]["CatalogVideoDto"][];
+      total: number;
+      page: number;
+      limit: number;
+    };
+    CatalogVideoDetailDto: {
+      id: string;
+      slug: string;
+      title: string;
+      /** @description Up to ~160 characters of the description. */
+      summary: string;
+      /** @enum {string} */
+      accessType: "FREE" | "PAID";
+      /** @description Null for free videos. */
+      price: components["schemas"]["MoneyDto"] | null;
+      /** @description Days of access after purchase; null for lifetime (or free). */
+      accessDurationDays: number | null;
+      categories: components["schemas"]["PublicCategoryRefDto"][];
+      thumbnail: components["schemas"]["PublicImageDto"] | null;
+      durationSeconds: number | null;
+      publishedAt: string;
+      description: string;
+    };
+    CatalogVideoDetailResponseDto: {
+      video: components["schemas"]["CatalogVideoDetailDto"];
+      /** @description Other published videos, same category first ("Up next"). */
+      related: components["schemas"]["CatalogVideoDto"][];
+    };
+    AdminCategoryDto: {
+      id: string;
+      name: string;
+      slug: string;
+      description: string;
+      sortOrder: number;
+      isActive: boolean;
+      videoCount: number;
+    };
+    AdminCategoryListDto: {
+      categories: components["schemas"]["AdminCategoryDto"][];
+    };
+    CreateCategoryDto: {
+      /** @example Cooking */
+      name: string;
+      description?: string;
+      isActive?: boolean;
+    };
+    AdminCategoryResponseDto: {
+      category: components["schemas"]["AdminCategoryDto"];
+    };
+    ReorderCategoriesDto: {
+      /** @description Every category ID, in the new order. */
+      ids: string[];
+    };
+    UpdateCategoryDto: {
+      name?: string;
+      slug?: string;
+      description?: string;
+      isActive?: boolean;
+    };
+    CategoryRefDto: {
+      id: string;
+      name: string;
+      slug: string;
+    };
+    ImageRefDto: {
+      id: string;
+      url: string;
+      width: number | null;
+      height: number | null;
+    };
+    AdminVideoDto: {
+      id: string;
+      title: string;
+      slug: string;
+      description: string;
+      /** @enum {string} */
+      status: "DRAFT" | "PUBLISHED" | "UNPUBLISHED";
+      /** @enum {string} */
+      accessType: "FREE" | "PAID";
+      /** @description Pesewas as a string; null for free videos. */
+      priceMinor: string | null;
+      currency: string;
+      accessDurationDays: number | null;
+      categories: components["schemas"]["CategoryRefDto"][];
+      thumbnail: components["schemas"]["ImageRefDto"] | null;
+      /** @description Known once a video file is processed (Phase 4). */
+      durationSeconds: number | null;
+      /** @description False until a processed video file exists (Phase 4). */
+      canPublish: boolean;
+      publishedAt: string | null;
+      createdAt: string;
+      updatedAt: string;
+    };
+    AdminVideoListDto: {
+      videos: components["schemas"]["AdminVideoDto"][];
+      total: number;
+      page: number;
+      limit: number;
+    };
+    AdminVideoResponseDto: {
+      video: components["schemas"]["AdminVideoDto"];
+    };
+    CreateVideoDto: {
+      /** @example Perfect Jollof, Three Ways */
+      title: string;
+      description?: string;
+      /** @enum {string} */
+      accessType?: "FREE" | "PAID";
+      /** @description Pesewas as a decimal string, e.g. "4500" for GH₵ 45.00. Null for free videos. */
+      priceMinor?: string | null;
+      /** @description Days of access after purchase; null for lifetime. */
+      accessDurationDays?: number | null;
+      categoryIds?: string[];
+      /** Format: uuid */
+      thumbnailImageId?: string | null;
+    };
+    BulkVideoActionDto: {
+      /** @enum {string} */
+      action: "unpublish" | "delete";
+      ids: string[];
+    };
+    BulkVideoResultDto: {
+      /** @description IDs the action was applied to. */
+      updated: string[];
+    };
+    UpdateVideoDto: {
+      title?: string;
+      slug?: string;
+      description?: string;
+      /** @enum {string} */
+      accessType?: "FREE" | "PAID";
+      /** @description Pesewas as a decimal string, e.g. "4500" for GH₵ 45.00. Null for free videos. */
+      priceMinor?: string | null;
+      /** @description Days of access after purchase; null for lifetime. */
+      accessDurationDays?: number | null;
+      categoryIds?: string[];
+      /** Format: uuid */
+      thumbnailImageId?: string | null;
+    };
+    MediaImageDto: {
+      id: string;
+      url: string;
+      contentType: string;
+      sizeBytes: number;
+      width: number | null;
+      height: number | null;
+      createdAt: string;
+    };
+    MediaImageListDto: {
+      images: components["schemas"]["MediaImageDto"][];
+      page: number;
+      hasMore: boolean;
+    };
+    CreateImageUploadDto: {
+      /** @enum {string} */
+      contentType: "image/jpeg" | "image/png" | "image/webp";
+      /** @description Exact file size in bytes (checked again after upload). */
+      sizeBytes: number;
+    };
+    PresignedUploadDto: {
+      /** @description PUT the file here, sending `headers` exactly. */
+      url: string;
+      /** @enum {string} */
+      method: "PUT";
+      headers: {
+        [key: string]: string;
+      };
+      expiresAt: string;
+    };
+    ImageUploadResponseDto: {
+      imageId: string;
+      upload: components["schemas"]["PresignedUploadDto"];
+    };
+    MediaImageResponseDto: {
+      image: components["schemas"]["MediaImageDto"];
+    };
+  };
+  responses: never;
+  parameters: never;
+  requestBodies: never;
+  headers: never;
+  pathItems: never;
 }
 export type $defs = Record<string, never>;
 export interface operations {
-    CustomerAuthController_register: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["RegisterDto"];
-            };
-        };
-        responses: {
-            202: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["AcceptedResponseDto"];
-                };
-            };
-        };
+  CustomerAuthController_register: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    CustomerAuthController_resendVerification: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["EmailDto"];
-            };
-        };
-        responses: {
-            202: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["AcceptedResponseDto"];
-                };
-            };
-        };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["RegisterDto"];
+      };
     };
-    CustomerAuthController_verifyEmail: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
+    responses: {
+      202: {
+        headers: {
+          [name: string]: unknown;
         };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["TokenDto"];
-            };
+        content: {
+          "application/json": components["schemas"]["AcceptedResponseDto"];
         };
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["CustomerResponseDto"];
-                };
-            };
-        };
+      };
     };
-    CustomerAuthController_login: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["LoginDto"];
-            };
-        };
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["CustomerResponseDto"];
-                };
-            };
-        };
+  };
+  CustomerAuthController_resendVerification: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    CustomerAuthController_logout: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["EmailDto"];
+      };
     };
-    CustomerAuthController_forgotPassword: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
+    responses: {
+      202: {
+        headers: {
+          [name: string]: unknown;
         };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["EmailDto"];
-            };
+        content: {
+          "application/json": components["schemas"]["AcceptedResponseDto"];
         };
-        responses: {
-            202: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["AcceptedResponseDto"];
-                };
-            };
-        };
+      };
     };
-    CustomerAuthController_resetPassword: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["ResetPasswordDto"];
-            };
-        };
-        responses: {
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
+  };
+  CustomerAuthController_verifyEmail: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    AccountController_me: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["CustomerResponseDto"];
-                };
-            };
-        };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["TokenDto"];
+      };
     };
-    AccountController_update: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
         };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["UpdateProfileDto"];
-            };
+        content: {
+          "application/json": components["schemas"]["CustomerResponseDto"];
         };
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["CustomerResponseDto"];
-                };
-            };
-        };
+      };
     };
-    AccountController_resendVerification: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            202: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["AcceptedResponseDto"];
-                };
-            };
-        };
+  };
+  CustomerAuthController_login: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    AccountController_changePassword: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["ChangePasswordDto"];
-            };
-        };
-        responses: {
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["LoginDto"];
+      };
     };
-    AccountController_listSessions: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
         };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["SessionListDto"];
-                };
-            };
+        content: {
+          "application/json": components["schemas"]["CustomerResponseDto"];
         };
+      };
     };
-    AccountController_revokeSession: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
+  };
+  CustomerAuthController_logout: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    AccountController_revokeOtherSessions: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
+    requestBody?: never;
+    responses: {
+      204: {
+        headers: {
+          [name: string]: unknown;
         };
-        requestBody?: never;
-        responses: {
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
+        content?: never;
+      };
     };
-    AccountController_deleteAccount: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["PasswordConfirmationDto"];
-            };
-        };
-        responses: {
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
+  };
+  CustomerAuthController_forgotPassword: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    AdminAuthController_login: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["AdminLoginDto"];
-            };
-        };
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["AdminLoginResponseDto"];
-                };
-            };
-        };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["EmailDto"];
+      };
     };
-    AdminAuthController_mfa: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
+    responses: {
+      202: {
+        headers: {
+          [name: string]: unknown;
         };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["MfaCodeDto"];
-            };
+        content: {
+          "application/json": components["schemas"]["AcceptedResponseDto"];
         };
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["AdminLoginResponseDto"];
-                };
-            };
-        };
+      };
     };
-    AdminAuthController_logout: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
+  };
+  CustomerAuthController_resetPassword: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    AdminAuthController_acceptInvite: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["ResetPasswordDto"];
-            };
-        };
-        responses: {
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ResetPasswordDto"];
+      };
     };
-    AdminAuthController_forgotPassword: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
+    responses: {
+      204: {
+        headers: {
+          [name: string]: unknown;
         };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["EmailDto"];
-            };
-        };
-        responses: {
-            202: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["AcceptedResponseDto"];
-                };
-            };
-        };
+        content?: never;
+      };
     };
-    AdminAuthController_resetPassword: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["ResetPasswordDto"];
-            };
-        };
-        responses: {
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
+  };
+  AccountController_me: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    AdminAccountController_me: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
         };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["AdminMeResponseDto"];
-                };
-            };
+        content: {
+          "application/json": components["schemas"]["CustomerResponseDto"];
         };
+      };
     };
-    AdminAccountController_changePassword: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["ChangePasswordDto"];
-            };
-        };
-        responses: {
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
+  };
+  AccountController_update: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    AdminAccountController_setupMfa: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["PasswordConfirmationDto"];
-            };
-        };
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["MfaSetupResponseDto"];
-                };
-            };
-        };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["UpdateProfileDto"];
+      };
     };
-    AdminAccountController_enableMfa: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
         };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["MfaCodeDto"];
-            };
+        content: {
+          "application/json": components["schemas"]["CustomerResponseDto"];
         };
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["RecoveryCodesResponseDto"];
-                };
-            };
-        };
+      };
     };
-    AdminAccountController_disableMfa: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["MfaChangeDto"];
-            };
-        };
-        responses: {
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
+  };
+  AccountController_resendVerification: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    AdminAccountController_regenerateRecoveryCodes: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
+    requestBody?: never;
+    responses: {
+      202: {
+        headers: {
+          [name: string]: unknown;
         };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["MfaChangeDto"];
-            };
+        content: {
+          "application/json": components["schemas"]["AcceptedResponseDto"];
         };
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["RecoveryCodesResponseDto"];
-                };
-            };
-        };
+      };
     };
-    StaffController_list: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["StaffListDto"];
-                };
-            };
-        };
+  };
+  AccountController_changePassword: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    StaffController_invite: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["InviteStaffDto"];
-            };
-        };
-        responses: {
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["StaffResponseDto"];
-                };
-            };
-        };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ChangePasswordDto"];
+      };
     };
-    StaffController_get: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: string;
-            };
-            cookie?: never;
+    responses: {
+      204: {
+        headers: {
+          [name: string]: unknown;
         };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["StaffResponseDto"];
-                };
-            };
-        };
+        content?: never;
+      };
     };
-    StaffController_update: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["UpdateStaffDto"];
-            };
-        };
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["StaffResponseDto"];
-                };
-            };
-        };
+  };
+  AccountController_listSessions: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    StaffController_suspend: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: string;
-            };
-            cookie?: never;
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
         };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["StaffResponseDto"];
-                };
-            };
+        content: {
+          "application/json": components["schemas"]["SessionListDto"];
         };
+      };
     };
-    StaffController_reactivate: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["StaffResponseDto"];
-                };
-            };
-        };
+  };
+  AccountController_revokeSession: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        id: string;
+      };
+      cookie?: never;
     };
-    StaffController_resendInvite: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: string;
-            };
-            cookie?: never;
+    requestBody?: never;
+    responses: {
+      204: {
+        headers: {
+          [name: string]: unknown;
         };
-        requestBody?: never;
-        responses: {
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
+        content?: never;
+      };
     };
-    StaffController_resetMfa: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["StaffResponseDto"];
-                };
-            };
-        };
+  };
+  AccountController_revokeOtherSessions: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    StaffController_revokeSessions: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: string;
-            };
-            cookie?: never;
+    requestBody?: never;
+    responses: {
+      204: {
+        headers: {
+          [name: string]: unknown;
         };
-        requestBody?: never;
-        responses: {
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
+        content?: never;
+      };
     };
-    RolesController_list: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["RoleListDto"];
-                };
-            };
-        };
+  };
+  AccountController_deleteAccount: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    RolesController_create: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["CreateRoleDto"];
-            };
-        };
-        responses: {
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["RoleResponseDto"];
-                };
-            };
-        };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["PasswordConfirmationDto"];
+      };
     };
-    RolesController_modules: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
+    responses: {
+      204: {
+        headers: {
+          [name: string]: unknown;
         };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["ModuleListDto"];
-                };
-            };
-        };
+        content?: never;
+      };
     };
-    RolesController_get: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["RoleResponseDto"];
-                };
-            };
-        };
+  };
+  AdminAuthController_login: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    RolesController_remove: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["AdminLoginDto"];
+      };
     };
-    RolesController_update: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: string;
-            };
-            cookie?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
         };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["UpdateRoleDto"];
-            };
+        content: {
+          "application/json": components["schemas"]["AdminLoginResponseDto"];
         };
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["RoleResponseDto"];
-                };
-            };
-        };
+      };
     };
-    HealthController_check: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": Record<string, never>;
-                };
-            };
-        };
+  };
+  AdminAuthController_mfa: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    HealthController_ready: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": Record<string, never>;
-                };
-            };
-        };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["MfaCodeDto"];
+      };
     };
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["AdminLoginResponseDto"];
+        };
+      };
+    };
+  };
+  AdminAuthController_logout: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      204: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content?: never;
+      };
+    };
+  };
+  AdminAuthController_acceptInvite: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ResetPasswordDto"];
+      };
+    };
+    responses: {
+      204: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content?: never;
+      };
+    };
+  };
+  AdminAuthController_forgotPassword: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["EmailDto"];
+      };
+    };
+    responses: {
+      202: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["AcceptedResponseDto"];
+        };
+      };
+    };
+  };
+  AdminAuthController_resetPassword: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ResetPasswordDto"];
+      };
+    };
+    responses: {
+      204: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content?: never;
+      };
+    };
+  };
+  AdminAccountController_me: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["AdminMeResponseDto"];
+        };
+      };
+    };
+  };
+  AdminAccountController_changePassword: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ChangePasswordDto"];
+      };
+    };
+    responses: {
+      204: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content?: never;
+      };
+    };
+  };
+  AdminAccountController_setupMfa: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["PasswordConfirmationDto"];
+      };
+    };
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["MfaSetupResponseDto"];
+        };
+      };
+    };
+  };
+  AdminAccountController_enableMfa: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["MfaCodeDto"];
+      };
+    };
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["RecoveryCodesResponseDto"];
+        };
+      };
+    };
+  };
+  AdminAccountController_disableMfa: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["MfaChangeDto"];
+      };
+    };
+    responses: {
+      204: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content?: never;
+      };
+    };
+  };
+  AdminAccountController_regenerateRecoveryCodes: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["MfaChangeDto"];
+      };
+    };
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["RecoveryCodesResponseDto"];
+        };
+      };
+    };
+  };
+  StaffController_list: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["StaffListDto"];
+        };
+      };
+    };
+  };
+  StaffController_invite: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["InviteStaffDto"];
+      };
+    };
+    responses: {
+      201: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["StaffResponseDto"];
+        };
+      };
+    };
+  };
+  StaffController_get: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        id: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["StaffResponseDto"];
+        };
+      };
+    };
+  };
+  StaffController_update: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        id: string;
+      };
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["UpdateStaffDto"];
+      };
+    };
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["StaffResponseDto"];
+        };
+      };
+    };
+  };
+  StaffController_suspend: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        id: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["StaffResponseDto"];
+        };
+      };
+    };
+  };
+  StaffController_reactivate: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        id: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["StaffResponseDto"];
+        };
+      };
+    };
+  };
+  StaffController_resendInvite: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        id: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      204: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content?: never;
+      };
+    };
+  };
+  StaffController_resetMfa: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        id: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["StaffResponseDto"];
+        };
+      };
+    };
+  };
+  StaffController_revokeSessions: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        id: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      204: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content?: never;
+      };
+    };
+  };
+  RolesController_list: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["RoleListDto"];
+        };
+      };
+    };
+  };
+  RolesController_create: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["CreateRoleDto"];
+      };
+    };
+    responses: {
+      201: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["RoleResponseDto"];
+        };
+      };
+    };
+  };
+  RolesController_modules: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ModuleListDto"];
+        };
+      };
+    };
+  };
+  RolesController_get: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        id: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["RoleResponseDto"];
+        };
+      };
+    };
+  };
+  RolesController_remove: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        id: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      204: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content?: never;
+      };
+    };
+  };
+  RolesController_update: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        id: string;
+      };
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["UpdateRoleDto"];
+      };
+    };
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["RoleResponseDto"];
+        };
+      };
+    };
+  };
+  CatalogController_categories: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["CatalogCategoryListDto"];
+        };
+      };
+    };
+  };
+  CatalogController_list: {
+    parameters: {
+      query?: {
+        q?: string;
+        /** @description Category slug. */
+        category?: string;
+        access?: "free" | "paid";
+        sort?: "newest" | "oldest" | "title" | "price_low" | "price_high";
+        page?: number;
+        limit?: number;
+      };
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["CatalogVideoListDto"];
+        };
+      };
+    };
+  };
+  CatalogController_detail: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        slug: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["CatalogVideoDetailResponseDto"];
+        };
+      };
+    };
+  };
+  AdminCategoriesController_list: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["AdminCategoryListDto"];
+        };
+      };
+    };
+  };
+  AdminCategoriesController_create: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["CreateCategoryDto"];
+      };
+    };
+    responses: {
+      201: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["AdminCategoryResponseDto"];
+        };
+      };
+    };
+  };
+  AdminCategoriesController_reorder: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ReorderCategoriesDto"];
+      };
+    };
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["AdminCategoryListDto"];
+        };
+      };
+    };
+  };
+  AdminCategoriesController_remove: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        id: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      204: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content?: never;
+      };
+    };
+  };
+  AdminCategoriesController_update: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        id: string;
+      };
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["UpdateCategoryDto"];
+      };
+    };
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["AdminCategoryResponseDto"];
+        };
+      };
+    };
+  };
+  AdminVideosController_list: {
+    parameters: {
+      query?: {
+        q?: string;
+        status?: "DRAFT" | "PUBLISHED" | "UNPUBLISHED";
+        access?: "FREE" | "PAID";
+        categoryId?: string;
+        page?: number;
+        limit?: number;
+      };
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["AdminVideoListDto"];
+        };
+      };
+    };
+  };
+  AdminVideosController_create: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["CreateVideoDto"];
+      };
+    };
+    responses: {
+      201: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["AdminVideoResponseDto"];
+        };
+      };
+    };
+  };
+  AdminVideosController_categoryOptions: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["AdminCategoryListDto"];
+        };
+      };
+    };
+  };
+  AdminVideosController_get: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        id: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["AdminVideoResponseDto"];
+        };
+      };
+    };
+  };
+  AdminVideosController_remove: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        id: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      204: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content?: never;
+      };
+    };
+  };
+  AdminVideosController_update: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        id: string;
+      };
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["UpdateVideoDto"];
+      };
+    };
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["AdminVideoResponseDto"];
+        };
+      };
+    };
+  };
+  AdminVideosController_bulk: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["BulkVideoActionDto"];
+      };
+    };
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["BulkVideoResultDto"];
+        };
+      };
+    };
+  };
+  AdminVideosController_publish: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        id: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["AdminVideoResponseDto"];
+        };
+      };
+    };
+  };
+  AdminVideosController_unpublish: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        id: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["AdminVideoResponseDto"];
+        };
+      };
+    };
+  };
+  MediaController_list: {
+    parameters: {
+      query?: {
+        page?: number;
+      };
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["MediaImageListDto"];
+        };
+      };
+    };
+  };
+  MediaController_createUpload: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["CreateImageUploadDto"];
+      };
+    };
+    responses: {
+      201: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ImageUploadResponseDto"];
+        };
+      };
+    };
+  };
+  MediaController_complete: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        id: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["MediaImageResponseDto"];
+        };
+      };
+    };
+  };
+  HealthController_check: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": Record<string, never>;
+        };
+      };
+    };
+  };
+  HealthController_ready: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": Record<string, never>;
+        };
+      };
+    };
+  };
 }

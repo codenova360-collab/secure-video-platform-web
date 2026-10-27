@@ -4,7 +4,7 @@ Customer-facing website for the Secure Video Platform — Next.js (App Router) +
 
 Project requirements and design live in the local workspace guide folder `../secure-video-platform/` (`AGENTS.md`, `docs/ARCHITECTURE.md`, `docs/SECURITY.md`, `docs/IMPLEMENTATION_PLAN.md`). That folder is not version-controlled or published.
 
-This app never holds payment, video-provider, storage, or email secrets. All data and decisions come from `secure-video-platform-api` through a server-side `/api` proxy (added in Phase 2).
+This app never holds payment, video-provider, storage, or email secrets. All data and decisions come from `secure-video-platform-api`.
 
 ## Requirements
 
@@ -12,11 +12,31 @@ This app never holds payment, video-provider, storage, or email secrets. All dat
 
 ## Setup
 
+Run the API first (see its README), then:
+
 ```bash
 npm install
-cp .env.example .env.local   # placeholder values; never commit
+cp .env.example .env.local   # set API_PROXY_SECRET to the API's WEB_PROXY_SECRET
 npm run dev                  # http://localhost:3000
 ```
+
+The API's `WEB_APP_URL` must match this site's origin (e.g. `http://localhost:3000`) — the API rejects state-changing requests from any other Origin. If port 3000 is taken, run `npm run dev -- --port 3100` and set the API's `WEB_APP_URL` to match.
+
+## How it talks to the API
+
+- **Browser → `/api/*` (this site) → API `/v1/*`.** `src/app/api/[...path]/route.ts` is a backend-for-frontend proxy (`src/lib/bff/forward.ts`): it forwards an allowlist of headers (including the session cookie and the browser's Origin), adds the shared `X-Proxy-Secret` and the visitor's IP (`x-nf-client-connection-ip` on Netlify), and relays `Set-Cookie` back so the session cookie is first-party and `HttpOnly` on this domain. `admin/*` paths are refused.
+- **Server Components** read with `src/lib/api/server.ts` (`server-only`). Anything that reads the session renders inside `<Suspense>` (Cache Components), so the shell is prerendered and the signed-in parts stream in.
+- **Route protection** (`src/proxy.ts`) only redirects signed-out visitors to `/login`; the API enforces every rule.
+- Typed responses come from the API's OpenAPI document: `npm run api:types` (reads `../secure-video-platform-api/openapi.json` — run `npm run openapi:export` in the API first).
+
+## Design system
+
+YouTube-style layout (see `docs/PROTOTYPE_BRIEF.md` §2a in the workspace guide folder), placeholder brand "Vaultline":
+
+- Tokens (colors, fonts, breakpoints) in `src/app/globals.css` (`@theme`). Swapping the brand means editing tokens only.
+- Light/dark/system theme stored in the `svp_theme` cookie and applied before paint (no flash).
+- Primitives in `src/components/ui/` (pill buttons, chips, text fields, dialog, menu, snackbar, avatar); shell in `src/components/shell/` (masthead, guide sidebar with full/mini/drawer states, mobile bottom tabs).
+- Icons: Material Symbols (Apache 2.0), generated into `src/components/icons/paths.ts` by `npm run icons` — add names in `scripts/generate-icons.mjs`.
 
 ## Scripts
 

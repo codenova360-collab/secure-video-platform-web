@@ -44,6 +44,11 @@ const ICONS = [
   "warning",
   "key",
   "palette",
+  "share",
+  "tune",
+  "link",
+  "sell",
+  "category",
 ];
 
 const root = join(

@@ -23,6 +23,17 @@ const nextConfig: NextConfig = {
       },
     },
   },
+  // The catalog follows YouTube's URLs: browsing on Home, videos at /watch.
+  async redirects() {
+    return [
+      { source: "/videos", destination: "/", permanent: false },
+      {
+        source: "/videos/:slug",
+        destination: "/watch/:slug",
+        permanent: false,
+      },
+    ];
+  },
   async headers() {
     return [{ source: "/:path*", headers: SECURITY_HEADERS }];
   },

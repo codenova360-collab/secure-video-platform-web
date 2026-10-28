@@ -762,6 +762,62 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
+  "/v1/admin/videos/{id}/uploads": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /**
+     * Starts a direct upload of the video file. The browser sends the file
+     *     straight to the video provider; processing updates arrive by webhook.
+     */
+    post: operations["AdminVideosController_startUpload"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/admin/videos/{id}/uploads/{fileId}/cancel": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    post: operations["AdminVideosController_cancelUpload"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/admin/videos/{id}/status": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /**
+     * The video with fresh file status. Checks the provider for uploads still
+     *     in flight (throttled), as a fallback for missed webhooks.
+     */
+    get: operations["AdminVideosController_status"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
   "/v1/admin/videos/{id}/unpublish": {
     parameters: {
       query?: never;
@@ -1185,6 +1241,25 @@ export interface components {
       width: number | null;
       height: number | null;
     };
+    VideoFileDto: {
+      id: string;
+      /** @enum {string} */
+      status:
+        | "READY"
+        | "DELETED"
+        | "WAITING_UPLOAD"
+        | "PROCESSING"
+        | "ERRORED"
+        | "CANCELLED";
+      fileName: string | null;
+      durationSeconds: number | null;
+      aspectRatio: string | null;
+      maxResolution: string | null;
+      /** @description Why processing failed, in plain words. */
+      errorMessage: string | null;
+      createdAt: string;
+      readyAt: string | null;
+    };
     AdminVideoDto: {
       id: string;
       title: string;
@@ -1200,10 +1275,14 @@ export interface components {
       accessDurationDays: number | null;
       categories: components["schemas"]["CategoryRefDto"][];
       thumbnail: components["schemas"]["ImageRefDto"] | null;
-      /** @description Known once a video file is processed (Phase 4). */
+      /** @description From the current video file, once processed. */
       durationSeconds: number | null;
-      /** @description False until a processed video file exists (Phase 4). */
+      /** @description True when a processed video file exists and the video isn't published. */
       canPublish: boolean;
+      /** @description The video file customers play (null until the first upload is ready). */
+      file: components["schemas"]["VideoFileDto"] | null;
+      /** @description A newer upload that isn't playable yet: uploading, processing, or failed. */
+      pendingFile: components["schemas"]["VideoFileDto"] | null;
       publishedAt: string | null;
       createdAt: string;
       updatedAt: string;
@@ -1253,6 +1332,19 @@ export interface components {
       categoryIds?: string[];
       /** Format: uuid */
       thumbnailImageId?: string | null;
+    };
+    StartVideoUploadDto: {
+      /** @description Original file name, shown in Studio. */
+      fileName?: string;
+    };
+    DirectUploadDto: {
+      /** @description Send the file here with chunked PUTs (e.g. UpChunk). One-time use. */
+      url: string;
+      expiresAt: string;
+    };
+    VideoUploadResponseDto: {
+      file: components["schemas"]["VideoFileDto"];
+      upload: components["schemas"]["DirectUploadDto"];
     };
     MediaImageDto: {
       id: string;
@@ -2517,6 +2609,74 @@ export interface operations {
     };
   };
   AdminVideosController_publish: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        id: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["AdminVideoResponseDto"];
+        };
+      };
+    };
+  };
+  AdminVideosController_startUpload: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        id: string;
+      };
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["StartVideoUploadDto"];
+      };
+    };
+    responses: {
+      201: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["VideoUploadResponseDto"];
+        };
+      };
+    };
+  };
+  AdminVideosController_cancelUpload: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        id: string;
+        fileId: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["AdminVideoResponseDto"];
+        };
+      };
+    };
+  };
+  AdminVideosController_status: {
     parameters: {
       query?: never;
       header?: never;

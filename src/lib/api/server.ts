@@ -4,7 +4,7 @@ import { cache } from "react";
 import { serverEnv } from "../env.server";
 import { clientIpOf } from "../bff/forward";
 import { ApiError } from "./errors";
-import type { Customer, CustomerResponse } from "./types";
+import type { Customer, CustomerResponse, VideoAccess } from "./types";
 
 /**
  * Server-side reads from the API (Server Components). Sends the visitor's
@@ -61,3 +61,25 @@ export const getCurrentUser = cache(async (): Promise<Customer | null> => {
     throw error;
   }
 });
+
+/**
+ * Whether the signed-in customer can watch a video (per-user, never
+ * cached). Null when signed out or the video isn't published.
+ */
+export const getVideoAccess = cache(
+  async (slug: string): Promise<VideoAccess | null> => {
+    if (!(await getCurrentUser())) return null;
+    try {
+      return await apiGet<VideoAccess>(
+        `/videos/${encodeURIComponent(slug)}/access`,
+      );
+    } catch (error) {
+      if (
+        error instanceof ApiError &&
+        (error.status === 401 || error.status === 404)
+      )
+        return null;
+      throw error;
+    }
+  },
+);

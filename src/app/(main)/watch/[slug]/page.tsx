@@ -9,9 +9,9 @@ import {
   CategoryAvatar,
   VideoThumbnail,
 } from "@/components/catalog/video-thumbnail";
-import { Button } from "@/components/ui/button";
 import { getCatalogCategories, getCatalogVideo } from "@/lib/api/catalog";
 import { accessLabel, formatDate, formatMoney } from "@/lib/format";
+import { AccessPill, BuyPill } from "./access-pill";
 import { PlayerGate } from "./player-gate";
 
 export async function generateMetadata(
@@ -35,7 +35,7 @@ async function Watch({
     getCatalogCategories(),
   ]);
   if (!data) notFound();
-  const { video, related } = data;
+  const { video, related, bundles } = data;
   const category = video.categories[0];
   const categoryCount = categories.find(
     (c) => c.slug === category?.slug,
@@ -81,16 +81,9 @@ async function Watch({
             <span />
           )}
           <div className="flex flex-wrap gap-2">
-            {video.accessType === "PAID" && video.price && (
-              <Button
-                variant="primary"
-                icon="sell"
-                disabled
-                title="Purchases open soon"
-              >
-                Buy {formatMoney(video.price, { compact: true })}
-              </Button>
-            )}
+            <Suspense fallback={<BuyPill video={video} />}>
+              <AccessPill video={video} />
+            </Suspense>
             <ShareButton slug={video.slug} />
           </div>
         </div>
@@ -100,22 +93,44 @@ async function Watch({
             meta={`${accessLabel(video)} · Added ${formatDate(video.publishedAt)}`}
             description={video.description}
             extra={
-              video.categories.length > 1 ? (
-                <p className="mt-3 text-sm">
-                  Categories:{" "}
-                  {video.categories.map((c, index) => (
-                    <span key={c.slug}>
-                      {index > 0 && ", "}
-                      <Link
-                        href={`/?category=${c.slug}`}
-                        className="text-accent hover:underline"
-                      >
-                        {c.name}
-                      </Link>
-                    </span>
-                  ))}
-                </p>
-              ) : undefined
+              <>
+                {bundles.length > 0 && (
+                  <div className="mt-3 text-sm">
+                    <p className="font-medium">Included in bundles</p>
+                    <ul className="mt-1 flex flex-col gap-1">
+                      {bundles.map((bundle) => (
+                        <li key={bundle.slug}>
+                          <Link
+                            href={`/bundles/${bundle.slug}`}
+                            className="text-accent hover:underline"
+                          >
+                            {bundle.title}
+                          </Link>{" "}
+                          · {formatMoney(bundle.price, { compact: true })} for{" "}
+                          {bundle.videoCount}{" "}
+                          {bundle.videoCount === 1 ? "video" : "videos"}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+                {video.categories.length > 1 && (
+                  <p className="mt-3 text-sm">
+                    Categories:{" "}
+                    {video.categories.map((c, index) => (
+                      <span key={c.slug}>
+                        {index > 0 && ", "}
+                        <Link
+                          href={`/?category=${c.slug}`}
+                          className="text-accent hover:underline"
+                        >
+                          {c.name}
+                        </Link>
+                      </span>
+                    ))}
+                  </p>
+                )}
+              </>
             }
           />
         </div>

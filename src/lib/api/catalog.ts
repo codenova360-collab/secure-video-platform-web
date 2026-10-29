@@ -4,8 +4,14 @@ import { connection } from "next/server";
 import { serverEnv } from "../env.server";
 import { ApiError } from "./errors";
 import type {
+  CatalogBundle,
+  CatalogBundleDetail,
+  CatalogBundleDetailResponse,
+  CatalogBundleList,
   CatalogCategory,
   CatalogCategoryList,
+  CatalogPlan,
+  CatalogPlanList,
   CatalogVideoDetailResponse,
   CatalogVideoList,
 } from "./types";
@@ -93,6 +99,43 @@ export async function getCatalogCategories(): Promise<CatalogCategory[]> {
       "/catalog/categories",
     );
     return categories;
+  } catch {
+    return [];
+  }
+}
+
+/** Published bundles; empty (not an error page) if the API is unreachable. */
+export async function getCatalogBundles(): Promise<CatalogBundle[]> {
+  await connection();
+  try {
+    return (await cachedGet<CatalogBundleList>("/catalog/bundles")).bundles;
+  } catch {
+    return [];
+  }
+}
+
+/** Null when the bundle doesn't exist or isn't published. */
+export async function getCatalogBundle(
+  slug: string,
+): Promise<CatalogBundleDetail | null> {
+  await connection();
+  try {
+    return (
+      await cachedGet<CatalogBundleDetailResponse>(
+        `/catalog/bundles/${encodeURIComponent(slug)}`,
+      )
+    ).bundle;
+  } catch (error) {
+    if (error instanceof ApiError && error.status === 404) return null;
+    throw error;
+  }
+}
+
+/** Published access plans; empty if the API is unreachable. */
+export async function getCatalogPlans(): Promise<CatalogPlan[]> {
+  await connection();
+  try {
+    return (await cachedGet<CatalogPlanList>("/catalog/plans")).plans;
   } catch {
     return [];
   }

@@ -1,11 +1,21 @@
 import { Suspense } from "react";
+import { BundleCard } from "@/components/catalog/bundle-cards";
 import { ChipLinks } from "@/components/catalog/chip-links";
+import { PlanCard } from "@/components/catalog/plan-cards";
+import { Shelf } from "@/components/catalog/shelf";
 import { VideoGrid, VideoGridSkeleton } from "@/components/catalog/video-cards";
 import { ButtonLink } from "@/components/ui/button";
 import { EmptyState } from "@/components/ui/empty-state";
-import { getCatalogCategories, getCatalogVideos } from "@/lib/api/catalog";
+import {
+  getCatalogBundles,
+  getCatalogCategories,
+  getCatalogPlans,
+  getCatalogVideos,
+} from "@/lib/api/catalog";
 
 const PAGE_SIZE = 24;
+/** Videos shown above the shelves on the unfiltered home page. */
+const FIRST_ROWS = 8;
 
 function one(value: string | string[] | undefined): string | undefined {
   return typeof value === "string" ? value : undefined;
@@ -24,9 +34,12 @@ async function HomeFeed({
       : undefined;
   const page = Math.max(1, Number(one(params.page)) || 1);
 
-  const [categories, result] = await Promise.all([
+  const showShelves = !category && !access && page === 1;
+  const [categories, result, bundles, plans] = await Promise.all([
     getCatalogCategories(),
     getCatalogVideos({ category, access, page, limit: PAGE_SIZE }),
+    showShelves ? getCatalogBundles() : [],
+    showShelves ? getCatalogPlans() : [],
   ]);
 
   const chips = [
@@ -46,6 +59,7 @@ async function HomeFeed({
       href: `/?category=${c.slug}`,
       selected: category === c.slug,
     })),
+    { label: "Bundles", href: "/bundles", selected: false },
   ];
 
   const nextHref = (() => {
@@ -81,7 +95,30 @@ async function HomeFeed({
         </EmptyState>
       ) : (
         <>
-          <VideoGrid videos={result.videos} />
+          {showShelves ? (
+            <>
+              <VideoGrid videos={result.videos.slice(0, FIRST_ROWS)} />
+              {bundles.length > 0 && (
+                <Shelf title="Bundles" href="/bundles">
+                  {bundles.map((bundle) => (
+                    <BundleCard key={bundle.slug} bundle={bundle} />
+                  ))}
+                </Shelf>
+              )}
+              {plans.length > 0 && (
+                <Shelf title="Plans" href="/plans">
+                  {plans.map((plan) => (
+                    <PlanCard key={plan.slug} plan={plan} />
+                  ))}
+                </Shelf>
+              )}
+              {result.videos.length > FIRST_ROWS && (
+                <VideoGrid videos={result.videos.slice(FIRST_ROWS)} />
+              )}
+            </>
+          ) : (
+            <VideoGrid videos={result.videos} />
+          )}
           {page * PAGE_SIZE < result.total && (
             <div className="mt-10 flex justify-center">
               <ButtonLink href={nextHref} variant="outline">

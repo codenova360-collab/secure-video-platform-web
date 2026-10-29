@@ -60,3 +60,50 @@ export function timeAgo(iso: string, now: Date = new Date()): string {
   }
   return "just now";
 }
+
+const INTERVALS = {
+  MONTHLY: { per: "month", every: "Billed monthly" },
+  QUARTERLY: { per: "3 months", every: "Billed every 3 months" },
+  BIANNUALLY: { per: "6 months", every: "Billed every 6 months" },
+  ANNUALLY: { per: "year", every: "Billed yearly" },
+} as const;
+
+/** "GH₵ 59 / month" or "GH₵ 99". */
+export function planPrice(plan: {
+  price: { amountMinor: string; currency: string };
+  billingType: "ONE_TIME" | "RECURRING";
+  billingInterval: keyof typeof INTERVALS | null;
+}): string {
+  const price = formatMoney(plan.price, { compact: true });
+  return plan.billingType === "RECURRING" && plan.billingInterval
+    ? `${price} / ${INTERVALS[plan.billingInterval].per}`
+    : price;
+}
+
+/** "Billed monthly · cancel anytime", "30 days of access", "Lifetime access". */
+export function planTerm(plan: {
+  billingType: "ONE_TIME" | "RECURRING";
+  billingInterval: keyof typeof INTERVALS | null;
+  durationDays: number | null;
+}): string {
+  if (plan.billingType === "RECURRING" && plan.billingInterval)
+    return `${INTERVALS[plan.billingInterval].every} · cancel anytime`;
+  return plan.durationDays === null
+    ? "Lifetime access · pay once"
+    : `${plan.durationDays} days of access · pay once`;
+}
+
+/** Savings of a bundle against buying its videos one by one, or null. */
+export function bundleSavings(bundle: {
+  price: { amountMinor: string; currency: string };
+  value: { amountMinor: string; currency: string };
+}): string | null {
+  const saved =
+    BigInt(bundle.value.amountMinor) - BigInt(bundle.price.amountMinor);
+  return saved > 0n
+    ? formatMoney(
+        { amountMinor: saved.toString(), currency: bundle.price.currency },
+        { compact: true },
+      )
+    : null;
+}

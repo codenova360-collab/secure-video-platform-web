@@ -12,6 +12,8 @@ export interface NavItem {
 export const PRIMARY_NAV: NavItem[] = [
   { href: "/", label: "Home", icon: "home" },
   { href: "/results", label: "Explore", icon: "explore" },
+  { href: "/bundles", label: "Bundles", icon: "playlist_play" },
+  { href: "/plans", label: "Plans", icon: "workspace_premium" },
 ];
 
 export const YOU_NAV: NavItem[] = [

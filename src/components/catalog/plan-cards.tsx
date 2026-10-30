@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { CatalogPlan } from "@/lib/api/types";
 import { planPrice, planTerm } from "@/lib/format";
 import { Icon } from "../icons/icon";
+import { BuyButton } from "../commerce/buy-button";
 import { Button } from "../ui/button";
 
 /** Which videos a plan covers, in words. */
@@ -51,14 +52,20 @@ export function PlanCard({ plan }: { plan: CatalogPlan }) {
         <p className="line-clamp-3 text-sm text-text-2">{plan.description}</p>
       )}
       <div className="mt-auto">
-        <Button
-          variant="primary"
-          disabled
-          title="Purchases open soon"
-          className="w-full"
-        >
-          {recurring ? "Subscribe" : "Get pass"} · opens soon
-        </Button>
+        {recurring ? (
+          <Button
+            variant="primary"
+            disabled
+            title="Subscriptions open soon"
+            className="w-full"
+          >
+            Subscribe · opens soon
+          </Button>
+        ) : (
+          <BuyButton productType="PLAN" slug={plan.slug} className="w-full">
+            Get pass
+          </BuyButton>
+        )}
       </div>
     </article>
   );

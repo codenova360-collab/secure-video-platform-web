@@ -1,10 +1,10 @@
 import { Icon } from "@/components/icons/icon";
-import { Button } from "@/components/ui/button";
+import { BuyButton } from "@/components/commerce/buy-button";
 import { getVideoAccess } from "@/lib/api/server";
 import type { CatalogVideoDetail } from "@/lib/api/types";
 import { formatMoney } from "@/lib/format";
 
-/** The disabled Buy pill (purchases open with payments). */
+/** The Buy pill (starts checkout; signed-out visitors go to sign-in). */
 export function BuyPill({
   video,
   label = "Buy",
@@ -14,9 +14,9 @@ export function BuyPill({
 }) {
   if (video.accessType !== "PAID" || !video.price) return null;
   return (
-    <Button variant="primary" icon="sell" disabled title="Purchases open soon">
+    <BuyButton productType="VIDEO" slug={video.slug}>
       {label} {formatMoney(video.price, { compact: true })}
-    </Button>
+    </BuyButton>
   );
 }
 

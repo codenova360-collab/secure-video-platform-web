@@ -5,7 +5,7 @@ import { BundleThumbnail } from "@/components/catalog/bundle-cards";
 import { ShareButton } from "@/components/catalog/share-menu";
 import { VideoResultRow } from "@/components/catalog/video-cards";
 import { Icon } from "@/components/icons/icon";
-import { Button } from "@/components/ui/button";
+import { BuyButton } from "@/components/commerce/buy-button";
 import { getCatalogBundle } from "@/lib/api/catalog";
 import { bundleSavings, formatMoney } from "@/lib/format";
 
@@ -52,14 +52,9 @@ async function Bundle({
           </p>
         )}
         <div className="mt-4 flex flex-wrap gap-2">
-          <Button
-            variant="primary"
-            icon="sell"
-            disabled
-            title="Purchases open soon"
-          >
-            Buy bundle · opens soon
-          </Button>
+          <BuyButton productType="BUNDLE" slug={bundle.slug}>
+            Buy bundle · {formatMoney(bundle.price, { compact: true })}
+          </BuyButton>
           <ShareButton slug={bundle.slug} path="bundles" />
         </div>
         <p className="mt-4 flex items-start gap-2 text-sm">

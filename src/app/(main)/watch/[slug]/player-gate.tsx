@@ -55,11 +55,11 @@ export async function PlayerGate({ video }: { video: CatalogVideoDetail }) {
     } else if (access?.reason === "EXPIRED") {
       title = "Your access has ended";
       detail = access.expiredAt
-        ? `It ended on ${formatDate(access.expiredAt)}. Renewing opens soon.`
-        : "Renewing opens soon.";
+        ? `It ended on ${formatDate(access.expiredAt)}. Renew below to keep watching.`
+        : "Renew below to keep watching.";
     } else if (video.accessType === "PAID" && video.price) {
       title = `Buy for ${formatMoney(video.price)} · ${accessLabel(video)}`;
-      detail = "Purchases open soon.";
+      detail = "Buy it below, or get it in a bundle or with a pass.";
     } else {
       title = "Video playback is coming soon";
       detail = "This video will be available to watch shortly.";

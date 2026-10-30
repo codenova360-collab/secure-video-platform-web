@@ -1111,6 +1111,92 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
+  "/v1/me/library": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get: operations["LibraryController_get"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/orders": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get: operations["OrdersController_list"];
+    put?: never;
+    /** Starts a purchase. The price comes from the product, never the client. */
+    post: operations["OrdersController_create"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/orders/{id}": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get: operations["OrdersController_get"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/orders/{id}/pay": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /** Returns the provider's checkout URL for this order. */
+    post: operations["OrdersController_pay"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/payments/verify/{reference}": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /**
+     * After checkout: asks the provider whether this payment succeeded and
+     *     grants access if so. The redirect alone grants nothing.
+     */
+    get: operations["OrdersController_verify"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
   "/health": {
     parameters: {
       query?: never;
@@ -1914,6 +2000,97 @@ export interface components {
         | null;
       /** @description For EXPIRED: when access ended. */
       expiredAt: string | null;
+    };
+    LibraryBundleDto: {
+      slug: string;
+      title: string;
+      cover: components["schemas"]["PublicImageDto"] | null;
+      /** @description Published videos it gives access to now. */
+      videoCount: number;
+    };
+    LibraryPlanDto: {
+      slug: string;
+      name: string;
+      /** @enum {string} */
+      scope: "CATEGORIES" | "ALL_PAID_VIDEOS";
+      categories: components["schemas"]["PublicCategoryRefDto"][];
+    };
+    LibraryItemDto: {
+      /** @enum {string} */
+      kind: "VIDEO" | "BUNDLE" | "PLAN";
+      /** @enum {string} */
+      state: "ACTIVE" | "EXPIRED" | "UPCOMING";
+      startsAt: string;
+      /** @description Null = lifetime. */
+      expiresAt: string | null;
+      /** @description Whole days of access left (rounded up) while active and dated; else null. */
+      daysLeft: number | null;
+      video: components["schemas"]["CatalogVideoDto"] | null;
+      bundle: components["schemas"]["LibraryBundleDto"] | null;
+      plan: components["schemas"]["LibraryPlanDto"] | null;
+    };
+    LibraryDto: {
+      items: components["schemas"]["LibraryItemDto"][];
+    };
+    CreateOrderDto: {
+      /** @enum {string} */
+      productType: "VIDEO" | "BUNDLE" | "PLAN";
+      /** @description The product's public slug (as in its URL). */
+      slug: string;
+    };
+    OrderProductRefDto: {
+      /** @enum {string} */
+      type: "VIDEO" | "BUNDLE" | "PLAN";
+      /** @description Current slug, for links; null if the product no longer exists. */
+      slug: string | null;
+    };
+    OrderItemDto: {
+      /** @enum {string} */
+      productType: "VIDEO" | "BUNDLE" | "PLAN";
+      /** @description Title at the time of purchase. */
+      title: string;
+      unitPrice: components["schemas"]["MoneyDto"];
+      /** @description Days of access bought; null = lifetime. */
+      accessDurationDays: number | null;
+      product: components["schemas"]["OrderProductRefDto"];
+    };
+    OrderDto: {
+      id: string;
+      /** @description Order number shown to the customer. */
+      reference: string;
+      /** @enum {string} */
+      status: "PENDING" | "PAID" | "FAILED" | "ABANDONED" | "REFUNDED";
+      total: components["schemas"]["MoneyDto"];
+      items: components["schemas"]["OrderItemDto"][];
+      /** @description For bundles: videos in it the customer can already watch. */
+      alreadyOwned: string[];
+      /** @description True while it can still be paid (pending and not expired). */
+      canPay: boolean;
+      createdAt: string;
+      expiresAt: string;
+      paidAt: string | null;
+    };
+    OrderResponseDto: {
+      order: components["schemas"]["OrderDto"];
+    };
+    OrderListDto: {
+      orders: components["schemas"]["OrderDto"][];
+      total: number;
+      page: number;
+      limit: number;
+    };
+    PayOrderResponseDto: {
+      /** @description Send the customer here (the provider's hosted checkout). */
+      authorizationUrl: string;
+      /** @description This payment attempt's reference (comes back on the callback). */
+      reference: string;
+    };
+    PaymentVerifyResponseDto: {
+      /** @enum {string} */
+      outcome: "PENDING" | "PAID" | "FAILED" | "REFUNDED";
+      /** @description Plain-language status for the payment page. */
+      message: string;
+      order: components["schemas"]["OrderDto"];
     };
   };
   responses: never;
@@ -3765,6 +3942,133 @@ export interface operations {
         };
         content: {
           "application/json": components["schemas"]["VideoAccessDto"];
+        };
+      };
+    };
+  };
+  LibraryController_get: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["LibraryDto"];
+        };
+      };
+    };
+  };
+  OrdersController_list: {
+    parameters: {
+      query?: {
+        page?: number;
+        limit?: number;
+      };
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["OrderListDto"];
+        };
+      };
+    };
+  };
+  OrdersController_create: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["CreateOrderDto"];
+      };
+    };
+    responses: {
+      201: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["OrderResponseDto"];
+        };
+      };
+    };
+  };
+  OrdersController_get: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        id: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["OrderResponseDto"];
+        };
+      };
+    };
+  };
+  OrdersController_pay: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        id: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["PayOrderResponseDto"];
+        };
+      };
+    };
+  };
+  OrdersController_verify: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        reference: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["PaymentVerifyResponseDto"];
         };
       };
     };

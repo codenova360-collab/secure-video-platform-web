@@ -28,6 +28,7 @@ The API's `WEB_APP_URL` must match this site's origin (e.g. `http://localhost:30
 - **Server Components** read with `src/lib/api/server.ts` (`server-only`). Anything that reads the session renders inside `<Suspense>` (Cache Components), so the shell is prerendered and the signed-in parts stream in.
 - **Catalog**: Home (`/`, chips for Free/Paid/categories), `/results` and `/watch/[slug]` read the public catalog through `src/lib/api/catalog.ts` with `'use cache'` (minutes, tag `catalog`). `/videos` and `/videos/[slug]` redirect to `/` and `/watch/[slug]`. Run `npm run seed:demo-catalog` in the API for sample content.
 - **Bundles and plans**: `/bundles`, `/bundles/[slug]`, `/plans`, plus Home shelves. The watch page asks the API (`GET /v1/videos/:slug/access`) whether the signed-in customer owns the video, has it through a plan, or needs to buy or renew.
+- **Buying**: Buy buttons create an order (`POST /api/orders`, price from the API) and open `/checkout/[orderId]`; Pay sends the customer to Paystack (or the local stand-in). Paystack returns them to `/checkout/callback?reference=…`, which asks the API to verify and keeps checking while mobile money confirms. `/library` and `/account/purchases` show what they own and their orders.
 - **Route protection** (`src/proxy.ts`) only redirects signed-out visitors to `/login`; the API enforces every rule.
 - Typed responses come from the API's OpenAPI document: `npm run api:types` (reads `../secure-video-platform-api/openapi.json` — run `npm run openapi:export` in the API first).
 

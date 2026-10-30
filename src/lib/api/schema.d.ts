@@ -632,6 +632,54 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
+  "/v1/catalog/bundles": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get: operations["CatalogController_bundles"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/catalog/bundles/{slug}": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get: operations["CatalogController_bundle"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/catalog/plans": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get: operations["CatalogController_plans"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
   "/v1/admin/categories": {
     parameters: {
       query?: never;
@@ -862,6 +910,201 @@ export interface paths {
     put?: never;
     /** Step 2: after the PUT, verify the file and make it usable. */
     post: operations["MediaController_complete"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/admin/bundles": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get: operations["AdminBundlesController_list"];
+    put?: never;
+    post: operations["AdminBundlesController_create"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/admin/bundles/video-options": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** Paid videos for the bundle editor (BUNDLES:READ is enough). */
+    get: operations["AdminBundlesController_videoOptions"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/admin/bundles/{id}": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get: operations["AdminBundlesController_get"];
+    put?: never;
+    post?: never;
+    delete: operations["AdminBundlesController_remove"];
+    options?: never;
+    head?: never;
+    patch: operations["AdminBundlesController_update"];
+    trace?: never;
+  };
+  "/v1/admin/bundles/{id}/videos": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    /** Replaces the bundle's videos (in order). */
+    put: operations["AdminBundlesController_setVideos"];
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/admin/bundles/{id}/publish": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    post: operations["AdminBundlesController_publish"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/admin/bundles/{id}/archive": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    post: operations["AdminBundlesController_archive"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/admin/plans": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get: operations["AdminPlansController_list"];
+    put?: never;
+    post: operations["AdminPlansController_create"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/admin/plans/category-options": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** Categories for the plan scope picker (PLANS:READ is enough). */
+    get: operations["AdminPlansController_categoryOptions"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/admin/plans/{id}": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get: operations["AdminPlansController_get"];
+    put?: never;
+    post?: never;
+    delete: operations["AdminPlansController_remove"];
+    options?: never;
+    head?: never;
+    patch: operations["AdminPlansController_update"];
+    trace?: never;
+  };
+  "/v1/admin/plans/{id}/publish": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    post: operations["AdminPlansController_publish"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/admin/plans/{id}/archive": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    post: operations["AdminPlansController_archive"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/videos/{slug}/access": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get: operations["VideoAccessController_check"];
+    put?: never;
+    post?: never;
     delete?: never;
     options?: never;
     head?: never;
@@ -1194,10 +1437,83 @@ export interface components {
       publishedAt: string;
       description: string;
     };
+    CatalogBundleDto: {
+      slug: string;
+      title: string;
+      /** @description Up to ~160 characters of the description. */
+      summary: string;
+      price: components["schemas"]["MoneyDto"];
+      /** @description What the published videos in it cost on their own. */
+      value: components["schemas"]["MoneyDto"];
+      /** @description Days of access after purchase; null for lifetime. */
+      accessDurationDays: number | null;
+      cover: components["schemas"]["PublicImageDto"] | null;
+      /** @description First few video thumbnails, for a stacked "playlist" look. */
+      previewThumbnails: components["schemas"]["PublicImageDto"][];
+      /** @description Published videos currently in it. */
+      videoCount: number;
+      publishedAt: string;
+    };
     CatalogVideoDetailResponseDto: {
       video: components["schemas"]["CatalogVideoDetailDto"];
       /** @description Other published videos, same category first ("Up next"). */
       related: components["schemas"]["CatalogVideoDto"][];
+      /** @description Published bundles that include this video. */
+      bundles: components["schemas"]["CatalogBundleDto"][];
+    };
+    CatalogBundleListDto: {
+      bundles: components["schemas"]["CatalogBundleDto"][];
+    };
+    CatalogBundleDetailDto: {
+      slug: string;
+      title: string;
+      /** @description Up to ~160 characters of the description. */
+      summary: string;
+      price: components["schemas"]["MoneyDto"];
+      /** @description What the published videos in it cost on their own. */
+      value: components["schemas"]["MoneyDto"];
+      /** @description Days of access after purchase; null for lifetime. */
+      accessDurationDays: number | null;
+      cover: components["schemas"]["PublicImageDto"] | null;
+      /** @description First few video thumbnails, for a stacked "playlist" look. */
+      previewThumbnails: components["schemas"]["PublicImageDto"][];
+      /** @description Published videos currently in it. */
+      videoCount: number;
+      publishedAt: string;
+      description: string;
+      /** @description Published videos in it, in order. */
+      videos: components["schemas"]["CatalogVideoDto"][];
+    };
+    CatalogBundleDetailResponseDto: {
+      bundle: components["schemas"]["CatalogBundleDetailDto"];
+    };
+    CatalogPlanDto: {
+      slug: string;
+      name: string;
+      description: string;
+      /** @enum {string} */
+      billingType: "ONE_TIME" | "RECURRING";
+      /** @description The pass price, or the price per billing interval. */
+      price: components["schemas"]["MoneyDto"];
+      /** @description One-time passes: days of access (null = lifetime). */
+      durationDays: number | null;
+      /**
+       * @description Subscriptions: how often it renews.
+       * @enum {string|null}
+       */
+      billingInterval:
+        "MONTHLY" | "QUARTERLY" | "BIANNUALLY" | "ANNUALLY" | null;
+      /** @enum {string} */
+      scope: "CATEGORIES" | "ALL_PAID_VIDEOS";
+      /** @description For CATEGORIES scope: the categories covered (active ones). */
+      categories: components["schemas"]["PublicCategoryRefDto"][];
+      cover: components["schemas"]["PublicImageDto"] | null;
+      /** @description Published paid videos it covers right now. */
+      videoCount: number;
+      publishedAt: string;
+    };
+    CatalogPlanListDto: {
+      plans: components["schemas"]["CatalogPlanDto"][];
     };
     AdminCategoryDto: {
       id: string;
@@ -1382,6 +1698,222 @@ export interface components {
     };
     MediaImageResponseDto: {
       image: components["schemas"]["MediaImageDto"];
+    };
+    AdminBundleDto: {
+      id: string;
+      title: string;
+      slug: string;
+      description: string;
+      /** @enum {string} */
+      status: "DRAFT" | "PUBLISHED" | "ARCHIVED";
+      /** @description Pesewas as a string. */
+      priceMinor: string;
+      currency: string;
+      accessDurationDays: number | null;
+      cover: components["schemas"]["ImageRefDto"] | null;
+      /** @description Videos currently in the bundle (any status). */
+      videoCount: number;
+      /** @description Of those, published (what customers see). */
+      publishedVideoCount: number;
+      /** @description Sum of the published videos' own prices, in pesewas. */
+      valueMinor: string;
+      /** @description True when it has a published video and isn't published. */
+      canPublish: boolean;
+      /** @description Why it can't be published yet, in plain words (null when it can). */
+      publishBlocker: string | null;
+      /** @description True once anyone holds access to it; it can then only be archived. */
+      hasBuyers: boolean;
+      publishedAt: string | null;
+      createdAt: string;
+      updatedAt: string;
+    };
+    AdminBundleListDto: {
+      bundles: components["schemas"]["AdminBundleDto"][];
+      total: number;
+      page: number;
+      limit: number;
+    };
+    AdminBundleVideoDto: {
+      id: string;
+      title: string;
+      slug: string;
+      /** @enum {string} */
+      status: "DRAFT" | "PUBLISHED" | "UNPUBLISHED";
+      /** @description Pesewas as a string (paid videos only). */
+      priceMinor: string;
+      thumbnail: components["schemas"]["ImageRefDto"] | null;
+    };
+    BundleVideoOptionsDto: {
+      videos: components["schemas"]["AdminBundleVideoDto"][];
+    };
+    AdminBundleDetailDto: {
+      id: string;
+      title: string;
+      slug: string;
+      description: string;
+      /** @enum {string} */
+      status: "DRAFT" | "PUBLISHED" | "ARCHIVED";
+      /** @description Pesewas as a string. */
+      priceMinor: string;
+      currency: string;
+      accessDurationDays: number | null;
+      cover: components["schemas"]["ImageRefDto"] | null;
+      /** @description Videos currently in the bundle (any status). */
+      videoCount: number;
+      /** @description Of those, published (what customers see). */
+      publishedVideoCount: number;
+      /** @description Sum of the published videos' own prices, in pesewas. */
+      valueMinor: string;
+      /** @description True when it has a published video and isn't published. */
+      canPublish: boolean;
+      /** @description Why it can't be published yet, in plain words (null when it can). */
+      publishBlocker: string | null;
+      /** @description True once anyone holds access to it; it can then only be archived. */
+      hasBuyers: boolean;
+      publishedAt: string | null;
+      createdAt: string;
+      updatedAt: string;
+      videos: components["schemas"]["AdminBundleVideoDto"][];
+    };
+    AdminBundleResponseDto: {
+      bundle: components["schemas"]["AdminBundleDetailDto"];
+    };
+    CreateBundleDto: {
+      /** @example Entrepreneur Starter Pack */
+      title: string;
+      /** @description Pesewas as a decimal string, e.g. "8500" for GH₵ 85.00. */
+      priceMinor: string;
+      description?: string;
+      /** @description Days of access after purchase; null for lifetime. */
+      accessDurationDays?: number | null;
+      /** Format: uuid */
+      coverImageId?: string | null;
+    };
+    UpdateBundleDto: {
+      title?: string;
+      slug?: string;
+      priceMinor?: string;
+      description?: string;
+      /** @description Days of access after purchase; null for lifetime. */
+      accessDurationDays?: number | null;
+      /** Format: uuid */
+      coverImageId?: string | null;
+    };
+    SetBundleVideosDto: {
+      /** @description Every video in the bundle, in display order. Only paid videos. */
+      videoIds: string[];
+    };
+    AdminPlanDto: {
+      id: string;
+      name: string;
+      slug: string;
+      description: string;
+      /** @enum {string} */
+      status: "DRAFT" | "PUBLISHED" | "ARCHIVED";
+      /** @enum {string} */
+      billingType: "ONE_TIME" | "RECURRING";
+      /** @description Pesewas as a string: the pass price, or the price per interval. */
+      priceMinor: string;
+      currency: string;
+      durationDays: number | null;
+      /** @enum {string|null} */
+      billingInterval:
+        "MONTHLY" | "QUARTERLY" | "BIANNUALLY" | "ANNUALLY" | null;
+      /** @enum {string} */
+      scope: "CATEGORIES" | "ALL_PAID_VIDEOS";
+      categories: components["schemas"]["CategoryRefDto"][];
+      cover: components["schemas"]["ImageRefDto"] | null;
+      /** @description Published paid videos the plan covers right now. */
+      coveredVideoCount: number;
+      canPublish: boolean;
+      /** @description Why it can't be published yet, in plain words (null when it can). */
+      publishBlocker: string | null;
+      hasBuyers: boolean;
+      publishedAt: string | null;
+      createdAt: string;
+      updatedAt: string;
+    };
+    AdminPlanListDto: {
+      plans: components["schemas"]["AdminPlanDto"][];
+      total: number;
+      page: number;
+      limit: number;
+    };
+    AdminPlanResponseDto: {
+      plan: components["schemas"]["AdminPlanDto"];
+    };
+    CreatePlanDto: {
+      /** @example All-Access Pass (30 days) */
+      name: string;
+      /** @enum {string} */
+      billingType: "ONE_TIME" | "RECURRING";
+      /** @description Pesewas as a decimal string: the pass price, or the price per interval. */
+      priceMinor: string;
+      description?: string;
+      /** @description One-time passes: days of access; null for lifetime. */
+      durationDays?: number | null;
+      /**
+       * @description Recurring plans: how often the customer is charged.
+       * @enum {string|null}
+       */
+      billingInterval?:
+        "MONTHLY" | "QUARTERLY" | "BIANNUALLY" | "ANNUALLY" | null;
+      /** @enum {string} */
+      scope?: "ALL_PAID_VIDEOS" | "CATEGORIES";
+      /** @description Required (at least one) when scope is CATEGORIES. */
+      categoryIds?: string[];
+      /** Format: uuid */
+      coverImageId?: string | null;
+    };
+    UpdatePlanDto: {
+      name?: string;
+      slug?: string;
+      /**
+       * @description Only while the plan has never been published.
+       * @enum {string}
+       */
+      billingType?: "ONE_TIME" | "RECURRING";
+      priceMinor?: string;
+      description?: string;
+      /** @description One-time passes: days of access; null for lifetime. */
+      durationDays?: number | null;
+      /**
+       * @description Recurring plans: how often the customer is charged.
+       * @enum {string|null}
+       */
+      billingInterval?:
+        "MONTHLY" | "QUARTERLY" | "BIANNUALLY" | "ANNUALLY" | null;
+      /** @enum {string} */
+      scope?: "ALL_PAID_VIDEOS" | "CATEGORIES";
+      /** @description Required (at least one) when scope is CATEGORIES. */
+      categoryIds?: string[];
+      /** Format: uuid */
+      coverImageId?: string | null;
+    };
+    VideoAccessDto: {
+      canWatch: boolean;
+      /**
+       * @description How access is granted (when canWatch).
+       * @enum {string|null}
+       */
+      via: "FREE" | "VIDEO" | "BUNDLE" | "PLAN" | null;
+      /** @description When the granting access ends; null = lifetime (or free). */
+      expiresAt: string | null;
+      /**
+       * @description Why not (when !canWatch).
+       * @enum {string|null}
+       */
+      reason:
+        | "UNPUBLISHED"
+        | "SIGN_IN_REQUIRED"
+        | "ACCOUNT_INACTIVE"
+        | "EMAIL_UNVERIFIED"
+        | "NOT_READY"
+        | "NOT_PURCHASED"
+        | "EXPIRED"
+        | null;
+      /** @description For EXPIRED: when access ended. */
+      expiredAt: string | null;
     };
   };
   responses: never;
@@ -2343,6 +2875,65 @@ export interface operations {
       };
     };
   };
+  CatalogController_bundles: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["CatalogBundleListDto"];
+        };
+      };
+    };
+  };
+  CatalogController_bundle: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        slug: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["CatalogBundleDetailResponseDto"];
+        };
+      };
+    };
+  };
+  CatalogController_plans: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["CatalogPlanListDto"];
+        };
+      };
+    };
+  };
   AdminCategoriesController_list: {
     parameters: {
       query?: never;
@@ -2779,6 +3370,401 @@ export interface operations {
         };
         content: {
           "application/json": components["schemas"]["MediaImageResponseDto"];
+        };
+      };
+    };
+  };
+  AdminBundlesController_list: {
+    parameters: {
+      query?: {
+        q?: string;
+        status?: "DRAFT" | "PUBLISHED" | "ARCHIVED";
+        page?: number;
+        limit?: number;
+      };
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["AdminBundleListDto"];
+        };
+      };
+    };
+  };
+  AdminBundlesController_create: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["CreateBundleDto"];
+      };
+    };
+    responses: {
+      201: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["AdminBundleResponseDto"];
+        };
+      };
+    };
+  };
+  AdminBundlesController_videoOptions: {
+    parameters: {
+      query?: {
+        q?: string;
+      };
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["BundleVideoOptionsDto"];
+        };
+      };
+    };
+  };
+  AdminBundlesController_get: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        id: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["AdminBundleResponseDto"];
+        };
+      };
+    };
+  };
+  AdminBundlesController_remove: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        id: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      204: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content?: never;
+      };
+    };
+  };
+  AdminBundlesController_update: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        id: string;
+      };
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["UpdateBundleDto"];
+      };
+    };
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["AdminBundleResponseDto"];
+        };
+      };
+    };
+  };
+  AdminBundlesController_setVideos: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        id: string;
+      };
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["SetBundleVideosDto"];
+      };
+    };
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["AdminBundleResponseDto"];
+        };
+      };
+    };
+  };
+  AdminBundlesController_publish: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        id: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["AdminBundleResponseDto"];
+        };
+      };
+    };
+  };
+  AdminBundlesController_archive: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        id: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["AdminBundleResponseDto"];
+        };
+      };
+    };
+  };
+  AdminPlansController_list: {
+    parameters: {
+      query?: {
+        q?: string;
+        status?: "DRAFT" | "PUBLISHED" | "ARCHIVED";
+        billingType?: "ONE_TIME" | "RECURRING";
+        page?: number;
+        limit?: number;
+      };
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["AdminPlanListDto"];
+        };
+      };
+    };
+  };
+  AdminPlansController_create: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["CreatePlanDto"];
+      };
+    };
+    responses: {
+      201: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["AdminPlanResponseDto"];
+        };
+      };
+    };
+  };
+  AdminPlansController_categoryOptions: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["AdminCategoryListDto"];
+        };
+      };
+    };
+  };
+  AdminPlansController_get: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        id: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["AdminPlanResponseDto"];
+        };
+      };
+    };
+  };
+  AdminPlansController_remove: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        id: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      204: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content?: never;
+      };
+    };
+  };
+  AdminPlansController_update: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        id: string;
+      };
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["UpdatePlanDto"];
+      };
+    };
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["AdminPlanResponseDto"];
+        };
+      };
+    };
+  };
+  AdminPlansController_publish: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        id: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["AdminPlanResponseDto"];
+        };
+      };
+    };
+  };
+  AdminPlansController_archive: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        id: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["AdminPlanResponseDto"];
+        };
+      };
+    };
+  };
+  VideoAccessController_check: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        slug: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["VideoAccessDto"];
         };
       };
     };

@@ -24,3 +24,11 @@ export type CatalogVideoDetailResponse =
   Schemas["CatalogVideoDetailResponseDto"];
 export type CatalogCategory = Schemas["CatalogCategoryDto"];
 export type CatalogCategoryList = Schemas["CatalogCategoryListDto"];
+export type CatalogBundle = Schemas["CatalogBundleDto"];
+export type CatalogBundleList = Schemas["CatalogBundleListDto"];
+export type CatalogBundleDetail = Schemas["CatalogBundleDetailDto"];
+export type CatalogBundleDetailResponse =
+  Schemas["CatalogBundleDetailResponseDto"];
+export type CatalogPlan = Schemas["CatalogPlanDto"];
+export type CatalogPlanList = Schemas["CatalogPlanListDto"];
+export type VideoAccess = Schemas["VideoAccessDto"];

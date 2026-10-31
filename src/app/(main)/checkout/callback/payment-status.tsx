@@ -105,14 +105,24 @@ export function PaymentStatus() {
   const { data } = view;
   const item = data.order.items[0];
   if (data.outcome === "PAID") {
+    const subscription = data.order.kind === "SUBSCRIPTION_START";
     return (
       <Panel
         icon="check_circle"
         tone="success"
-        title="Payment received"
-        detail={`${item?.title ?? "Your purchase"} is ready. A receipt is on its way to your email.`}
+        title={subscription ? "You’re subscribed" : "Payment received"}
+        detail={
+          subscription
+            ? `${item?.title ?? "Your subscription"} is active and renews automatically. A receipt is on its way to your email.`
+            : `${item?.title ?? "Your purchase"} is ready. A receipt is on its way to your email.`
+        }
         action={
           <div className="flex flex-wrap justify-center gap-2">
+            {subscription && (
+              <ButtonLink href="/account/subscriptions" variant="tonal">
+                Manage subscription
+              </ButtonLink>
+            )}
             {item?.productType === "VIDEO" && item.product.slug && (
               <ButtonLink
                 href={productHref(item.product)}

@@ -17,6 +17,8 @@ export const metadata: Metadata = { title: "Library" };
 function accessNote(item: LibraryItem): string {
   if (item.state === "UPCOMING") return `Starts ${formatDate(item.startsAt)}`;
   if (item.state === "EXPIRED") return `Ended ${formatDate(item.expiresAt!)}`;
+  // Renewals keep moving the end date; the subscriptions page has the details.
+  if (item.viaSubscription) return "Subscription active";
   if (item.daysLeft === null) return "Lifetime access";
   return item.daysLeft <= 1
     ? "Expires today"
@@ -35,7 +37,8 @@ function title(item: LibraryItem): string {
 
 function Card({ item }: { item: LibraryItem }) {
   const expired = item.state === "EXPIRED";
-  const soon = item.daysLeft !== null && item.daysLeft <= 14;
+  const soon =
+    !item.viaSubscription && item.daysLeft !== null && item.daysLeft <= 14;
   return (
     <article
       className={cn("group flex flex-col gap-2", expired && "opacity-60")}
@@ -61,7 +64,10 @@ function Card({ item }: { item: LibraryItem }) {
           />
         ) : (
           <div className="flex aspect-video flex-col items-center justify-center gap-2 rounded-xl bg-gradient-to-br from-accent to-text p-4 text-center text-white">
-            <Icon name="workspace_premium" size={40} />
+            <Icon
+              name={item.viaSubscription ? "autorenew" : "workspace_premium"}
+              size={40}
+            />
             <span className="text-sm font-medium">
               {item.plan?.scope === "ALL_PAID_VIDEOS"
                 ? "All paid videos"
@@ -82,11 +88,18 @@ function Card({ item }: { item: LibraryItem }) {
         <Icon name="schedule" size={14} />
         {accessNote(item)}
       </p>
-      {expired && (
+      {item.viaSubscription && !expired ? (
+        <Link
+          href="/account/subscriptions"
+          className="self-start text-xs font-medium text-accent hover:underline"
+        >
+          Manage subscription
+        </Link>
+      ) : expired ? (
         <ButtonLink href={href(item)} variant="tonal" className="self-start">
-          Renew
+          {item.viaSubscription ? "Subscribe again" : "Renew"}
         </ButtonLink>
-      )}
+      ) : null}
     </article>
   );
 }

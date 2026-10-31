@@ -34,6 +34,7 @@ const verifyResponse = (
   order: {
     id: "o1",
     reference: "ORD-1",
+    kind: "PURCHASE",
     status: outcome === "PAID" ? "PAID" : "PENDING",
     total: { amountMinor: "1500", currency: "GHS" },
     items: [
@@ -42,10 +43,13 @@ const verifyResponse = (
         title: "Perfect Jollof",
         unitPrice: { amountMinor: "1500", currency: "GHS" },
         accessDurationDays: 30,
+        billingInterval: null,
         product: { type: "VIDEO", slug: "perfect-jollof" },
       },
     ],
     alreadyOwned: [],
+    accessStartsAt: null,
+    coveredByCurrentPlan: false,
     canPay: outcome !== "PAID",
     createdAt: "2026-10-30T00:00:00.000Z",
     expiresAt: "2026-10-30T00:30:00.000Z",

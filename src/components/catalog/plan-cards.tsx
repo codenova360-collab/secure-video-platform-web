@@ -3,7 +3,6 @@ import type { CatalogPlan } from "@/lib/api/types";
 import { planPrice, planTerm } from "@/lib/format";
 import { Icon } from "../icons/icon";
 import { BuyButton } from "../commerce/buy-button";
-import { Button } from "../ui/button";
 
 /** Which videos a plan covers, in words. */
 export function planScope(plan: CatalogPlan): string {
@@ -52,19 +51,13 @@ export function PlanCard({ plan }: { plan: CatalogPlan }) {
         <p className="line-clamp-3 text-sm text-text-2">{plan.description}</p>
       )}
       <div className="mt-auto">
-        {recurring ? (
-          <Button
-            variant="primary"
-            disabled
-            title="Subscriptions open soon"
-            className="w-full"
-          >
-            Subscribe · opens soon
-          </Button>
-        ) : (
-          <BuyButton productType="PLAN" slug={plan.slug} className="w-full">
-            Get pass
-          </BuyButton>
+        <BuyButton productType="PLAN" slug={plan.slug} className="w-full">
+          {recurring ? "Subscribe" : "Get pass"}
+        </BuyButton>
+        {recurring && (
+          <p className="mt-2 text-center text-xs text-text-2">
+            Paid by card, renews automatically
+          </p>
         )}
       </div>
     </article>

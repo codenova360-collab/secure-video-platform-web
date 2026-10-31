@@ -1,13 +1,14 @@
 import { Icon } from "@/components/icons/icon";
+import { ProtectedPlayer } from "@/components/player/protected-player";
 import { ButtonLink } from "@/components/ui/button";
 import { getCurrentUser, getVideoAccess } from "@/lib/api/server";
 import type { CatalogVideoDetail } from "@/lib/api/types";
 import { accessLabel, formatDate, formatMoney } from "@/lib/format";
 
 /**
- * The message over the player. Reads the session, so it renders inside
- * <Suspense>. The API's access check decides; playback itself arrives with
- * protected streaming, so even allowed viewers see a "coming soon" note.
+ * The player, or why there isn't one. Reads the session, so it renders
+ * inside <Suspense>. The API's access check decides here, and again when
+ * playback starts and on every heartbeat.
  */
 export async function PlayerGate({ video }: { video: CatalogVideoDetail }) {
   const user = await getCurrentUser();
@@ -16,7 +17,7 @@ export async function PlayerGate({ video }: { video: CatalogVideoDetail }) {
   let title: string;
   let detail: string;
   let action: React.ReactNode = null;
-  let icon: "lock" | "play_arrow" = "lock";
+  const icon = "lock";
 
   if (!user) {
     title = "Sign in to watch";
@@ -39,17 +40,15 @@ export async function PlayerGate({ video }: { video: CatalogVideoDetail }) {
   } else {
     const access = await getVideoAccess(video.slug);
     if (access?.canWatch) {
-      icon = "play_arrow";
-      title =
-        access.via === "FREE"
-          ? "Free to watch"
-          : access.via === "PLAN"
-            ? "Included in your plan"
-            : "You own this video";
-      detail = access.expiresAt
-        ? `Your access lasts until ${formatDate(access.expiresAt)}. Playback opens soon.`
-        : "Playback opens soon.";
-    } else if (access?.reason === "NOT_READY") {
+      return (
+        <ProtectedPlayer
+          slug={video.slug}
+          title={video.title}
+          renewHref={`/watch/${video.slug}`}
+        />
+      );
+    }
+    if (access?.reason === "NOT_READY") {
       title = "This video isn’t ready to play yet";
       detail = "Check back soon.";
     } else if (access?.reason === "EXPIRED") {

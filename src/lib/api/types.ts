@@ -43,3 +43,6 @@ export type CustomerSubscription = Schemas["SubscriptionDto"];
 export type SubscriptionList = Schemas["SubscriptionListDto"];
 export type SubscriptionResponse = Schemas["SubscriptionResponseDto"];
 export type CardUpdateLink = Schemas["CardUpdateLinkDto"];
+export type PlaybackResponse = Schemas["PlaybackResponseDto"];
+export type PlaybackHeartbeat = Schemas["PlaybackHeartbeatDto"];
+export type PlaybackSource = Schemas["PlaybackSourceDto"];

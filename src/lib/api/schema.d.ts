@@ -1297,6 +1297,54 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
+  "/v1/videos/{slug}/playback": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    post: operations["PlaybackController_start"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/playback/{id}/heartbeat": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    post: operations["PlaybackController_heartbeat"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/playback/{id}/end": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    post: operations["PlaybackController_end"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
   "/health": {
     parameters: {
       query?: never;
@@ -2311,6 +2359,45 @@ export interface components {
       /** @description Plain-language status for the payment page. */
       message: string;
       order: components["schemas"]["OrderDto"];
+    };
+    StartPlaybackDto: {
+      /** @description At the stream limit: end the other devices' playback and start here. */
+      endOthers?: boolean;
+    };
+    PlaybackSessionDto: {
+      id: string;
+      /** @description Send a heartbeat this often while the player is open. */
+      heartbeatSeconds: number;
+    };
+    PlaybackTokensDto: {
+      playback: string;
+      thumbnail: string;
+      storyboard: string;
+    };
+    PlaybackSourceDto: {
+      /** @enum {string} */
+      type: "mux" | "file";
+      playbackId: string | null;
+      tokens: components["schemas"]["PlaybackTokensDto"] | null;
+      url: string | null;
+      /** @description When these credentials stop working; heartbeats bring fresh ones. */
+      expiresAt: string;
+    };
+    PlaybackVideoDto: {
+      title: string;
+      durationSeconds: number | null;
+    };
+    PlaybackResponseDto: {
+      session: components["schemas"]["PlaybackSessionDto"];
+      source: components["schemas"]["PlaybackSourceDto"];
+      /** @description Shown over the player: masked email and a short viewer ID. */
+      watermark: string;
+      video: components["schemas"]["PlaybackVideoDto"];
+    };
+    PlaybackHeartbeatDto: {
+      session: components["schemas"]["PlaybackSessionDto"];
+      /** @description Fresh credentials when the current ones are close to expiring; else null. */
+      source: components["schemas"]["PlaybackSourceDto"] | null;
     };
   };
   responses: never;
@@ -4423,6 +4510,71 @@ export interface operations {
         content: {
           "application/json": components["schemas"]["PaymentVerifyResponseDto"];
         };
+      };
+    };
+  };
+  PlaybackController_start: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        slug: string;
+      };
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["StartPlaybackDto"];
+      };
+    };
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["PlaybackResponseDto"];
+        };
+      };
+    };
+  };
+  PlaybackController_heartbeat: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        id: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["PlaybackHeartbeatDto"];
+        };
+      };
+    };
+  };
+  PlaybackController_end: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        id: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      204: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content?: never;
       };
     };
   };

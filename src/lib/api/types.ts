@@ -39,3 +39,7 @@ export type PayOrderResponse = Schemas["PayOrderResponseDto"];
 export type PaymentVerifyResponse = Schemas["PaymentVerifyResponseDto"];
 export type LibraryItem = Schemas["LibraryItemDto"];
 export type Library = Schemas["LibraryDto"];
+export type CustomerSubscription = Schemas["SubscriptionDto"];
+export type SubscriptionList = Schemas["SubscriptionListDto"];
+export type SubscriptionResponse = Schemas["SubscriptionResponseDto"];
+export type CardUpdateLink = Schemas["CardUpdateLinkDto"];

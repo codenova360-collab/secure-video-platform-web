@@ -61,7 +61,7 @@ export function timeAgo(iso: string, now: Date = new Date()): string {
   return "just now";
 }
 
-const INTERVALS = {
+export const INTERVALS = {
   MONTHLY: { per: "month", every: "Billed monthly" },
   QUARTERLY: { per: "3 months", every: "Billed every 3 months" },
   BIANNUALLY: { per: "6 months", every: "Billed every 6 months" },

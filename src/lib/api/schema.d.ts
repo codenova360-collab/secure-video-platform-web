@@ -584,6 +584,106 @@ export interface paths {
     patch: operations["RolesController_update"];
     trace?: never;
   };
+  "/v1/subscriptions": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get: operations["SubscriptionsController_list"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/subscriptions/{id}/cancel": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /** Stops renewal; access continues until the paid period ends. */
+    post: operations["SubscriptionsController_cancel"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/subscriptions/{id}/card-update-link": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /** A provider page for changing the card, e.g. after a failed renewal. */
+    post: operations["SubscriptionsController_cardUpdateLink"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/admin/subscriptions": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get: operations["AdminSubscriptionsController_list"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/admin/subscriptions/{id}": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** With its payment history (first payment and renewals). */
+    get: operations["AdminSubscriptionsController_get"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/admin/subscriptions/{id}/cancel": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /** Stops renewal; the customer keeps access until the paid period ends. */
+    post: operations["AdminSubscriptionsController_cancel"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
   "/v1/catalog/categories": {
     parameters: {
       query?: never;
@@ -1455,14 +1555,10 @@ export interface components {
       /** @description When present, replaces the whole permission set. */
       permissions?: components["schemas"]["PermissionGrantDto"][];
     };
-    CatalogCategoryDto: {
+    SubscriptionPlanRefDto: {
       name: string;
-      slug: string;
-      description: string;
-      videoCount: number;
-    };
-    CatalogCategoryListDto: {
-      categories: components["schemas"]["CatalogCategoryDto"][];
+      /** @description Current slug, for links; null if the plan was deleted. */
+      slug: string | null;
     };
     MoneyDto: {
       /** @example 1500 */
@@ -1472,6 +1568,113 @@ export interface components {
        * @enum {string}
        */
       currency: "GHS";
+    };
+    SubscriptionDto: {
+      id: string;
+      /** @enum {string} */
+      status: "ACTIVE" | "CANCELLED" | "NON_RENEWING" | "PAST_DUE" | "EXPIRED";
+      plan: components["schemas"]["SubscriptionPlanRefDto"];
+      /** @description Price per interval when they subscribed. */
+      price: components["schemas"]["MoneyDto"];
+      /** @enum {string} */
+      billingInterval: "MONTHLY" | "QUARTERLY" | "BIANNUALLY" | "ANNUALLY";
+      currentPeriodStart: string;
+      /** @description Paid up until here. */
+      currentPeriodEnd: string;
+      /** @description When access ends if nothing more is paid (includes any grace period). */
+      accessUntil: string | null;
+      /** @description Next automatic charge; null unless it will renew. */
+      nextPaymentAt: string | null;
+      cancelledAt: string | null;
+      canCancel: boolean;
+      /** @description A card change can fix a failed renewal. */
+      canUpdateCard: boolean;
+      createdAt: string;
+    };
+    SubscriptionListDto: {
+      subscriptions: components["schemas"]["SubscriptionDto"][];
+    };
+    SubscriptionResponseDto: {
+      subscription: components["schemas"]["SubscriptionDto"];
+    };
+    CardUpdateLinkDto: {
+      /** @description The provider's page for changing the card (opens outside the site). */
+      url: string;
+    };
+    AdminSubscriptionCustomerDto: {
+      id: string;
+      email: string;
+      fullName: string;
+    };
+    AdminSubscriptionDto: {
+      id: string;
+      /** @enum {string} */
+      status: "ACTIVE" | "CANCELLED" | "NON_RENEWING" | "PAST_DUE" | "EXPIRED";
+      plan: components["schemas"]["SubscriptionPlanRefDto"];
+      /** @description Price per interval when they subscribed. */
+      price: components["schemas"]["MoneyDto"];
+      /** @enum {string} */
+      billingInterval: "MONTHLY" | "QUARTERLY" | "BIANNUALLY" | "ANNUALLY";
+      currentPeriodStart: string;
+      /** @description Paid up until here. */
+      currentPeriodEnd: string;
+      /** @description When access ends if nothing more is paid (includes any grace period). */
+      accessUntil: string | null;
+      /** @description Next automatic charge; null unless it will renew. */
+      nextPaymentAt: string | null;
+      cancelledAt: string | null;
+      canCancel: boolean;
+      /** @description A card change can fix a failed renewal. */
+      canUpdateCard: boolean;
+      createdAt: string;
+      customer: components["schemas"]["AdminSubscriptionCustomerDto"];
+      /** @description False until the provider has reported its subscription. */
+      providerLinked: boolean;
+      pastDueSince: string | null;
+      endedAt: string | null;
+      cancelReason: string | null;
+      cancelledByStaff: boolean;
+      lastSyncedAt: string | null;
+    };
+    AdminSubscriptionListDto: {
+      subscriptions: components["schemas"]["AdminSubscriptionDto"][];
+      total: number;
+      page: number;
+      limit: number;
+    };
+    SubscriptionChargeDto: {
+      orderId: string;
+      orderReference: string;
+      /** @enum {string} */
+      kind: "PURCHASE" | "SUBSCRIPTION_START" | "SUBSCRIPTION_RENEWAL";
+      /** @enum {string} */
+      orderStatus: "PENDING" | "PAID" | "FAILED" | "ABANDONED" | "REFUNDED";
+      amount: components["schemas"]["MoneyDto"];
+      /** @enum {string|null} */
+      paymentStatus:
+        "FAILED" | "ABANDONED" | "INITIALIZED" | "SUCCESS" | "REVERSED" | null;
+      channel: string | null;
+      paidAt: string | null;
+      /** @description Set when the payment needs a look (e.g. amount mismatch, charged after the end). */
+      reviewReason: string | null;
+      createdAt: string;
+    };
+    AdminSubscriptionDetailDto: {
+      subscription: components["schemas"]["AdminSubscriptionDto"];
+      charges: components["schemas"]["SubscriptionChargeDto"][];
+    };
+    AdminCancelSubscriptionDto: {
+      /** @description Why staff cancelled it (kept in the audit log). */
+      reason: string;
+    };
+    CatalogCategoryDto: {
+      name: string;
+      slug: string;
+      description: string;
+      videoCount: number;
+    };
+    CatalogCategoryListDto: {
+      categories: components["schemas"]["CatalogCategoryDto"][];
     };
     PublicCategoryRefDto: {
       name: string;
@@ -1991,12 +2194,12 @@ export interface components {
        */
       reason:
         | "UNPUBLISHED"
+        | "EXPIRED"
         | "SIGN_IN_REQUIRED"
         | "ACCOUNT_INACTIVE"
         | "EMAIL_UNVERIFIED"
         | "NOT_READY"
         | "NOT_PURCHASED"
-        | "EXPIRED"
         | null;
       /** @description For EXPIRED: when access ended. */
       expiredAt: string | null;
@@ -2025,6 +2228,8 @@ export interface components {
       expiresAt: string | null;
       /** @description Whole days of access left (rounded up) while active and dated; else null. */
       daysLeft: number | null;
+      /** @description Plans: held through a subscription (manage it under Subscriptions, not Renew). */
+      viaSubscription: boolean;
       video: components["schemas"]["CatalogVideoDto"] | null;
       bundle: components["schemas"]["LibraryBundleDto"] | null;
       plan: components["schemas"]["LibraryPlanDto"] | null;
@@ -2050,20 +2255,35 @@ export interface components {
       /** @description Title at the time of purchase. */
       title: string;
       unitPrice: components["schemas"]["MoneyDto"];
-      /** @description Days of access bought; null = lifetime. */
+      /** @description Days of access bought; null = lifetime (or a subscription). */
       accessDurationDays: number | null;
+      /**
+       * @description Subscriptions: how often it renews; null for one-off purchases.
+       * @enum {string|null}
+       */
+      billingInterval:
+        "MONTHLY" | "QUARTERLY" | "BIANNUALLY" | "ANNUALLY" | null;
       product: components["schemas"]["OrderProductRefDto"];
     };
     OrderDto: {
       id: string;
       /** @description Order number shown to the customer. */
       reference: string;
+      /**
+       * @description PURCHASE, or a subscription's first payment / renewal.
+       * @enum {string}
+       */
+      kind: "PURCHASE" | "SUBSCRIPTION_START" | "SUBSCRIPTION_RENEWAL";
       /** @enum {string} */
       status: "PENDING" | "PAID" | "FAILED" | "ABANDONED" | "REFUNDED";
       total: components["schemas"]["MoneyDto"];
       items: components["schemas"]["OrderItemDto"][];
       /** @description For bundles: videos in it the customer can already watch. */
       alreadyOwned: string[];
+      /** @description For pending plan orders: access starts here, when the current pass ends. */
+      accessStartsAt: string | null;
+      /** @description For pending subscriptions: a plan the customer holds already covers it all. */
+      coveredByCurrentPlan: boolean;
       /** @description True while it can still be paid (pending and not expired). */
       canPay: boolean;
       createdAt: string;
@@ -2981,6 +3201,139 @@ export interface operations {
         };
         content: {
           "application/json": components["schemas"]["RoleResponseDto"];
+        };
+      };
+    };
+  };
+  SubscriptionsController_list: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SubscriptionListDto"];
+        };
+      };
+    };
+  };
+  SubscriptionsController_cancel: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        id: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["SubscriptionResponseDto"];
+        };
+      };
+    };
+  };
+  SubscriptionsController_cardUpdateLink: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        id: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["CardUpdateLinkDto"];
+        };
+      };
+    };
+  };
+  AdminSubscriptionsController_list: {
+    parameters: {
+      query?: {
+        status?:
+          "ACTIVE" | "NON_RENEWING" | "PAST_DUE" | "CANCELLED" | "EXPIRED";
+        /** @description Customer email or name contains. */
+        q?: string;
+        page?: number;
+        limit?: number;
+      };
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["AdminSubscriptionListDto"];
+        };
+      };
+    };
+  };
+  AdminSubscriptionsController_get: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        id: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["AdminSubscriptionDetailDto"];
+        };
+      };
+    };
+  };
+  AdminSubscriptionsController_cancel: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        id: string;
+      };
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["AdminCancelSubscriptionDto"];
+      };
+    };
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["AdminSubscriptionDetailDto"];
         };
       };
     };

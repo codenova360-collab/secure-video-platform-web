@@ -1,9 +1,15 @@
 import { cleanup, render, screen } from "@testing-library/react";
-import { afterEach, describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
 import type { CatalogBundle, CatalogPlan } from "@/lib/api/types";
 import { bundleSavings, planPrice, planTerm } from "@/lib/format";
 import { BundleCard } from "./bundle-cards";
+import { SnackbarProvider } from "../ui/snackbar";
 import { PlanCard, planScope } from "./plan-cards";
+
+vi.mock("next/navigation", () => ({
+  useRouter: () => ({ push: vi.fn() }),
+  usePathname: () => "/plans",
+}));
 
 afterEach(cleanup);
 
@@ -53,15 +59,22 @@ describe("BundleCard", () => {
 });
 
 describe("PlanCard", () => {
-  it("describes price, billing, and scope; buying is not open yet", () => {
-    render(<PlanCard plan={monthly} />);
+  it("describes price, billing, and scope, and offers to subscribe", () => {
+    render(
+      <SnackbarProvider>
+        <PlanCard plan={monthly} />
+      </SnackbarProvider>,
+    );
     expect(screen.getByText("GH₵ 59 / month")).toBeDefined();
     expect(screen.getByText("Billed monthly · cancel anytime")).toBeDefined();
     expect(screen.getByText(/All paid videos · 11 videos/)).toBeDefined();
     expect(
       (screen.getByRole("button", { name: /Subscribe/ }) as HTMLButtonElement)
         .disabled,
-    ).toBe(true);
+    ).toBe(false);
+    expect(
+      screen.getByText("Paid by card, renews automatically"),
+    ).toBeDefined();
   });
 
   it("lists categories for category plans", () => {

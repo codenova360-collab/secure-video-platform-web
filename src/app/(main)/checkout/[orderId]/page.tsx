@@ -8,7 +8,7 @@ import { ButtonLink } from "@/components/ui/button";
 import { ApiError } from "@/lib/api/errors";
 import { apiGet } from "@/lib/api/server";
 import type { OrderResponse } from "@/lib/api/types";
-import { formatMoney } from "@/lib/format";
+import { formatDate, formatMoney, INTERVALS } from "@/lib/format";
 import { PRODUCT_LABEL, productHref } from "@/lib/products";
 
 export const metadata: Metadata = {
@@ -33,6 +33,11 @@ async function Summary({
     throw error;
   }
   const item = order.items[0];
+  const interval = item?.billingInterval
+    ? INTERVALS[item.billingInterval]
+    : null;
+  const subscription = order.kind === "SUBSCRIPTION_START" && interval;
+  const perPeriod = interval ? ` / ${interval.per}` : "";
 
   return (
     <div className="mx-auto max-w-lg">
@@ -50,7 +55,9 @@ async function Summary({
           >
             <div className="min-w-0">
               <p className="text-xs font-medium text-text-2 uppercase">
-                {PRODUCT_LABEL[line.productType]}
+                {line.billingInterval
+                  ? "Subscription"
+                  : PRODUCT_LABEL[line.productType]}
               </p>
               <p className="font-medium">
                 <Link
@@ -61,20 +68,55 @@ async function Summary({
                 </Link>
               </p>
               <p className="text-sm text-text-2">
-                {line.accessDurationDays === null
-                  ? "Lifetime access"
-                  : `${line.accessDurationDays} days of access`}
+                {line.billingInterval
+                  ? `${INTERVALS[line.billingInterval].every} · renews automatically`
+                  : line.accessDurationDays === null
+                    ? "Lifetime access"
+                    : `${line.accessDurationDays} days of access`}
               </p>
             </div>
             <p className="font-medium whitespace-nowrap">
               {formatMoney(line.unitPrice)}
+              {line.billingInterval
+                ? ` / ${INTERVALS[line.billingInterval].per}`
+                : ""}
             </p>
           </div>
         ))}
         <div className="mt-6 flex items-center justify-between border-t border-divider pt-4 text-lg font-bold">
-          <span>Total</span>
+          <span>{subscription ? "Today" : "Total"}</span>
           <span>{formatMoney(order.total)}</span>
         </div>
+
+        {order.canPay && order.accessStartsAt && (
+          <div
+            role="note"
+            className="mt-4 flex gap-2 rounded-lg bg-surface p-3 text-sm"
+          >
+            <Icon name="schedule" size={20} className="shrink-0 text-text-2" />
+            <span>
+              Your current pass runs until {formatDate(order.accessStartsAt)}.
+              {subscription
+                ? " Your first subscription period starts then, so you don’t lose any paid time."
+                : " This pass starts then, so you don’t lose any paid time."}
+            </span>
+          </div>
+        )}
+        {order.canPay &&
+          !order.accessStartsAt &&
+          order.coveredByCurrentPlan && (
+            <div
+              role="note"
+              className="mt-4 flex gap-2 rounded-lg bg-surface p-3 text-sm"
+            >
+              <Icon name="error" size={20} className="shrink-0 text-text-2" />
+              <span>
+                A plan you already have covers everything in this one. To
+                switch, cancel your current subscription — you keep it until its
+                paid period ends.
+              </span>
+            </div>
+          )}
 
         {order.alreadyOwned.length > 0 && order.canPay && (
           <div
@@ -95,11 +137,17 @@ async function Summary({
             <>
               <PayButton
                 orderId={order.id}
-                label={`Pay ${formatMoney(order.total)}`}
+                label={
+                  subscription
+                    ? `Subscribe · ${formatMoney(order.total)}${perPeriod}`
+                    : `Pay ${formatMoney(order.total)}`
+                }
               />
-              <p className="mt-3 flex items-center justify-center gap-1.5 text-xs text-text-2">
-                <Icon name="lock" size={14} />
-                Secure payment by Paystack · card or mobile money
+              <p className="mt-3 flex items-center justify-center gap-1.5 text-center text-xs text-text-2">
+                <Icon name="lock" size={14} className="shrink-0" />
+                {subscription
+                  ? "Secure payment by Paystack · card only (mobile money can’t renew automatically) · cancel anytime"
+                  : "Secure payment by Paystack · card or mobile money"}
               </p>
             </>
           ) : order.status === "PAID" ? (
@@ -107,8 +155,11 @@ async function Summary({
               <p className="flex items-center gap-2 font-medium text-success">
                 <Icon name="check_circle" /> Paid — you’re all set
               </p>
-              <ButtonLink href="/library" variant="primary">
-                Go to your library
+              <ButtonLink
+                href={subscription ? "/account/subscriptions" : "/library"}
+                variant="primary"
+              >
+                {subscription ? "Manage subscription" : "Go to your library"}
               </ButtonLink>
             </div>
           ) : (

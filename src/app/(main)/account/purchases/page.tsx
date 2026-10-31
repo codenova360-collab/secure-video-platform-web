@@ -32,7 +32,7 @@ async function Orders() {
           </ButtonLink>
         }
       >
-        Videos, bundles, and passes you buy will be listed here.
+        Videos, bundles, passes, and subscription payments will be listed here.
       </EmptyState>
     );
   }
@@ -48,8 +48,14 @@ async function Orders() {
           >
             <div className="min-w-0 flex-1">
               <p className="text-xs text-text-2">
-                {item ? PRODUCT_LABEL[item.productType] : "Order"} ·{" "}
-                {formatDate(order.paidAt ?? order.createdAt)}
+                {order.kind === "SUBSCRIPTION_RENEWAL"
+                  ? "Subscription renewal"
+                  : order.kind === "SUBSCRIPTION_START"
+                    ? "Subscription"
+                    : item
+                      ? PRODUCT_LABEL[item.productType]
+                      : "Order"}{" "}
+                · {formatDate(order.paidAt ?? order.createdAt)}
               </p>
               <p className="truncate font-medium">
                 {item ? (

@@ -4,6 +4,22 @@
  */
 
 export interface paths {
+  "/v1/admin/audit-logs": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get: operations["AdminAuditController_list"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
   "/v1/auth/register": {
     parameters: {
       query?: never;
@@ -582,6 +598,121 @@ export interface paths {
     options?: never;
     head?: never;
     patch: operations["RolesController_update"];
+    trace?: never;
+  };
+  "/v1/admin/customers": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get: operations["AdminCustomersController_list"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/admin/customers/{id}": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** Audit-logged: who looked at which customer. */
+    get: operations["AdminCustomersController_get"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/admin/customers/{id}/suspend": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    post: operations["AdminCustomersController_suspend"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/admin/customers/{id}/reactivate": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    post: operations["AdminCustomersController_reactivate"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/admin/customers/{id}/sessions/revoke-all": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /** Signs the customer out everywhere. */
+    post: operations["AdminCustomersController_revokeAll"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/admin/customers/{id}/sessions/{sessionId}/revoke": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    post: operations["AdminCustomersController_revokeOne"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/admin/customers/{id}/password-reset": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /** Emails the customer a reset link. */
+    post: operations["AdminCustomersController_passwordReset"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
     trace?: never;
   };
   "/v1/subscriptions": {
@@ -1227,6 +1358,56 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
+  "/v1/admin/entitlements": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** A customer's access: purchases, subscriptions, grants, past and present. */
+    get: operations["AdminEntitlementsController_list"];
+    put?: never;
+    post: operations["AdminEntitlementsController_grant"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/admin/entitlements/product-options": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** Products for the Grant access picker. */
+    get: operations["AdminEntitlementsController_productOptions"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/admin/entitlements/{id}/revoke": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    post: operations["AdminEntitlementsController_revoke"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
   "/v1/orders": {
     parameters: {
       query?: never;
@@ -1297,6 +1478,71 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
+  "/v1/admin/orders": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get: operations["AdminOrdersController_list"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/admin/orders/{id}": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get: operations["AdminOrdersController_get"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/admin/payments": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get: operations["AdminPaymentsController_list"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/admin/payments/{id}/reverify": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /** Re-check with the provider (e.g. a pending mobile money payment). */
+    post: operations["AdminPaymentsController_reverify"];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
   "/v1/videos/{slug}/playback": {
     parameters: {
       query?: never;
@@ -1345,6 +1591,55 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
+  "/v1/admin/analytics": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** Dashboard and Analytics: totals, daily series, top content, subscriptions. */
+    get: operations["AnalyticsController_overview"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/admin/webhook-events": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get: operations["AdminWebhookEventsController_list"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/v1/admin/webhook-events/{id}": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get: operations["AdminWebhookEventsController_get"];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
   "/health": {
     parameters: {
       query?: never;
@@ -1383,6 +1678,35 @@ export interface paths {
 export type webhooks = Record<string, never>;
 export interface components {
   schemas: {
+    AuditActorDto: {
+      /** @enum {string} */
+      type: "ADMIN" | "USER" | "SYSTEM" | "WEBHOOK";
+      id: string | null;
+      /** @description Staff or customer name and email, when known. */
+      name: string | null;
+      email: string | null;
+    };
+    AdminAuditEntryDto: {
+      id: string;
+      createdAt: string;
+      actor: components["schemas"]["AuditActorDto"];
+      action: string;
+      targetType: string | null;
+      targetId: string | null;
+      /** @description No secrets, passwords, tokens, or payment payloads (SECURITY.md §12). */
+      metadata: {
+        [key: string]: unknown;
+      };
+      ip: string | null;
+      userAgent: string | null;
+      requestId: string | null;
+    };
+    AdminAuditListDto: {
+      entries: components["schemas"]["AdminAuditEntryDto"][];
+      total: number;
+      page: number;
+      limit: number;
+    };
     RegisterDto: {
       email: string;
       password: string;
@@ -1602,6 +1926,57 @@ export interface components {
       description?: string;
       /** @description When present, replaces the whole permission set. */
       permissions?: components["schemas"]["PermissionGrantDto"][];
+    };
+    AdminCustomerDto: {
+      id: string;
+      email: string;
+      fullName: string;
+      phone: string | null;
+      /** @enum {string} */
+      status: "ACTIVE" | "SUSPENDED" | "DELETED";
+      emailVerified: boolean;
+      /** @description Locked after too many failed sign-ins, until this time. */
+      lockedUntil: string | null;
+      lastLoginAt: string | null;
+      createdAt: string;
+    };
+    AdminCustomerListDto: {
+      customers: components["schemas"]["AdminCustomerDto"][];
+      total: number;
+      page: number;
+      limit: number;
+    };
+    AdminCustomerSessionDto: {
+      id: string;
+      createdAt: string;
+      lastUsedAt: string;
+      ip: string | null;
+      userAgent: string | null;
+    };
+    AdminPlaybackActivityDto: {
+      id: string;
+      video: {
+        title: string;
+        slug: string;
+      };
+      startedAt: string;
+      lastHeartbeatAt: string;
+      endedAt: string | null;
+      endReason: string | null;
+      ip: string | null;
+      userAgent: string | null;
+    };
+    AdminCustomerDetailDto: {
+      customer: components["schemas"]["AdminCustomerDto"];
+      /** @description Signed-in devices (not revoked, not expired). */
+      sessions: components["schemas"]["AdminCustomerSessionDto"][];
+      /** @description The 20 most recent playback sessions. */
+      playback: components["schemas"]["AdminPlaybackActivityDto"][];
+      /** @description Live subscriptions keep renewing even while the account is suspended. */
+      liveSubscriptions: number;
+    };
+    ReasonDto: {
+      reason: string;
     };
     SubscriptionPlanRefDto: {
       name: string;
@@ -1898,8 +2273,8 @@ export interface components {
       id: string;
       /** @enum {string} */
       status:
-        | "READY"
         | "DELETED"
+        | "READY"
         | "WAITING_UPLOAD"
         | "PROCESSING"
         | "ERRORED"
@@ -2285,6 +2660,56 @@ export interface components {
     LibraryDto: {
       items: components["schemas"]["LibraryItemDto"][];
     };
+    AdminEntitlementDto: {
+      id: string;
+      /** @enum {string} */
+      state: "ACTIVE" | "EXPIRED" | "UPCOMING" | "REVOKED";
+      /** @enum {string} */
+      productType: "VIDEO" | "BUNDLE" | "PLAN";
+      product: {
+        id: string;
+        title: string;
+      };
+      /** @enum {string} */
+      source: "PURCHASE" | "SUBSCRIPTION" | "ADMIN_GRANT";
+      startsAt: string;
+      expiresAt: string | null;
+      revokedAt: string | null;
+      revokeReason: string | null;
+      /** @description Staff who granted it (manual grants). */
+      grantedBy: string | null;
+      /** @description Subscription access is changed by cancelling the subscription, not here. */
+      canRevoke: boolean;
+      createdAt: string;
+    };
+    AdminEntitlementListDto: {
+      entitlements: components["schemas"]["AdminEntitlementDto"][];
+    };
+    ProductOptionDto: {
+      /** @enum {string} */
+      type: "VIDEO" | "BUNDLE" | "PLAN";
+      id: string;
+      title: string;
+      /** @description e.g. "Published · GH₵ 15.00" */
+      detail: string;
+    };
+    ProductOptionListDto: {
+      products: components["schemas"]["ProductOptionDto"][];
+    };
+    GrantEntitlementDto: {
+      /** Format: uuid */
+      customerId: string;
+      /** @enum {string} */
+      productType: "VIDEO" | "BUNDLE" | "PLAN";
+      /** Format: uuid */
+      productId: string;
+      /** @description Days of access from now; null = lifetime. */
+      durationDays: number | null;
+      reason: string;
+    };
+    AdminEntitlementResponseDto: {
+      entitlement: components["schemas"]["AdminEntitlementDto"];
+    };
     CreateOrderDto: {
       /** @enum {string} */
       productType: "VIDEO" | "BUNDLE" | "PLAN";
@@ -2360,6 +2785,75 @@ export interface components {
       message: string;
       order: components["schemas"]["OrderDto"];
     };
+    AdminCustomerRefDto: {
+      id: string;
+      email: string;
+      fullName: string;
+    };
+    AdminOrderItemDto: {
+      /** @enum {string} */
+      productType: "VIDEO" | "BUNDLE" | "PLAN";
+      productId: string;
+      title: string;
+      unitPrice: components["schemas"]["MoneyDto"];
+      accessDurationDays: number | null;
+      /** @enum {string|null} */
+      billingInterval:
+        "MONTHLY" | "QUARTERLY" | "BIANNUALLY" | "ANNUALLY" | null;
+    };
+    AdminOrderDto: {
+      id: string;
+      reference: string;
+      /** @enum {string} */
+      kind: "PURCHASE" | "SUBSCRIPTION_START" | "SUBSCRIPTION_RENEWAL";
+      /** @enum {string} */
+      status: "PENDING" | "PAID" | "FAILED" | "ABANDONED" | "REFUNDED";
+      total: components["schemas"]["MoneyDto"];
+      customer: components["schemas"]["AdminCustomerRefDto"];
+      items: components["schemas"]["AdminOrderItemDto"][];
+      /** @description Set when a payment didn't match (amount, duplicate…): needs a look. */
+      reviewReason: string | null;
+      subscriptionId: string | null;
+      createdAt: string;
+      paidAt: string | null;
+    };
+    AdminOrderListDto: {
+      orders: components["schemas"]["AdminOrderDto"][];
+      total: number;
+      page: number;
+      limit: number;
+    };
+    AdminOrderResponseDto: {
+      order: components["schemas"]["AdminOrderDto"];
+    };
+    AdminPaymentDto: {
+      id: string;
+      orderId: string;
+      orderReference: string;
+      customer: components["schemas"]["AdminCustomerRefDto"];
+      provider: string;
+      reference: string;
+      amount: components["schemas"]["MoneyDto"];
+      /** @enum {string} */
+      status: "FAILED" | "ABANDONED" | "INITIALIZED" | "SUCCESS" | "REVERSED";
+      channel: string | null;
+      /** @description Sanitized provider summary: status, amount, channel, message. */
+      gateway: Record<string, never>;
+      verifiedAt: string | null;
+      lastCheckedAt: string | null;
+      /** @description Unresolved or unsuccessful: worth asking the provider again. */
+      canReverify: boolean;
+      createdAt: string;
+    };
+    AdminPaymentListDto: {
+      payments: components["schemas"]["AdminPaymentDto"][];
+      total: number;
+      page: number;
+      limit: number;
+    };
+    AdminPaymentResponseDto: {
+      payment: components["schemas"]["AdminPaymentDto"];
+    };
     StartPlaybackDto: {
       /** @description At the stream limit: end the other devices' playback and start here. */
       endOthers?: boolean;
@@ -2399,6 +2893,110 @@ export interface components {
       /** @description Fresh credentials when the current ones are close to expiring; else null. */
       source: components["schemas"]["PlaybackSourceDto"] | null;
     };
+    AnalyticsTotalsDto: {
+      revenue: components["schemas"]["MoneyDto"];
+      /** @description Paid orders (purchases, first payments, renewals). */
+      sales: number;
+      newCustomers: number;
+      /** @description Playback sessions started (reloads don't count). */
+      plays: number;
+      /** @description Customers who watched something. */
+      activeViewers: number;
+    };
+    AnalyticsDayDto: {
+      /** @description YYYY-MM-DD (UTC). */
+      date: string;
+      revenueMinor: string;
+      sales: number;
+      newCustomers: number;
+      plays: number;
+    };
+    TopContentDto: {
+      title: string;
+      slug: string;
+      plays: number;
+      viewers: number;
+    };
+    TopProductDto: {
+      productType: string;
+      title: string;
+      sales: number;
+      revenue: components["schemas"]["MoneyDto"];
+    };
+    SalesByTypeDto: {
+      /** @description VIDEO, BUNDLE, PASS, or SUBSCRIPTION. */
+      type: string;
+      sales: number;
+      revenue: components["schemas"]["MoneyDto"];
+    };
+    SubscriptionStatsDto: {
+      active: number;
+      pastDue: number;
+      cancelling: number;
+      startedInRange: number;
+      endedInRange: number;
+      /** @description Ended in range ÷ live at the start of the range; null with none live. */
+      churnRate: number | null;
+    };
+    RecentPaymentDto: {
+      orderReference: string;
+      kind: string;
+      title: string;
+      amount: components["schemas"]["MoneyDto"];
+      channel: string | null;
+      paidAt: string;
+    };
+    AnalyticsOverviewDto: {
+      days: number;
+      from: string;
+      to: string;
+      totals: components["schemas"]["AnalyticsTotalsDto"];
+      /** @description Same length, just before. */
+      previous: components["schemas"]["AnalyticsTotalsDto"];
+      series: components["schemas"]["AnalyticsDayDto"][];
+      topContent: components["schemas"]["TopContentDto"][];
+      topProducts: components["schemas"]["TopProductDto"][];
+      salesByType: components["schemas"]["SalesByTypeDto"][];
+      subscriptions: components["schemas"]["SubscriptionStatsDto"];
+      /** @description Customers holding access right now. */
+      customersWithAccess: number;
+      recentPayments: components["schemas"]["RecentPaymentDto"][];
+    };
+    AdminWebhookEventDto: {
+      id: string;
+      /** @enum {string} */
+      provider: "MUX" | "PAYSTACK";
+      eventType: string;
+      /** @enum {string} */
+      status: "FAILED" | "RECEIVED" | "PROCESSED" | "IGNORED";
+      attempts: number;
+      error: string | null;
+      receivedAt: string;
+      processedAt: string | null;
+    };
+    AdminWebhookEventListDto: {
+      events: components["schemas"]["AdminWebhookEventDto"][];
+      total: number;
+      page: number;
+      limit: number;
+    };
+    AdminWebhookEventDetailDto: {
+      id: string;
+      /** @enum {string} */
+      provider: "MUX" | "PAYSTACK";
+      eventType: string;
+      /** @enum {string} */
+      status: "FAILED" | "RECEIVED" | "PROCESSED" | "IGNORED";
+      attempts: number;
+      error: string | null;
+      receivedAt: string;
+      processedAt: string | null;
+      dedupeKey: string;
+      /** @description As stored: already stripped of card authorizations, customer details, and tokens. */
+      payload: {
+        [key: string]: unknown;
+      };
+    };
   };
   responses: never;
   parameters: never;
@@ -2408,6 +3006,38 @@ export interface components {
 }
 export type $defs = Record<string, never>;
 export interface operations {
+  AdminAuditController_list: {
+    parameters: {
+      query?: {
+        actorType?: "ADMIN" | "USER" | "SYSTEM" | "WEBHOOK";
+        actorId?: string;
+        /** @description An action (`video.published`) or a prefix (`video.`). */
+        action?: string;
+        targetType?: string;
+        targetId?: string;
+        /** @description ISO date or date-time; inclusive. */
+        from?: string;
+        /** @description ISO date or date-time; a bare date includes that whole day. */
+        to?: string;
+        page?: number;
+        limit?: number;
+      };
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["AdminAuditListDto"];
+        };
+      };
+    };
+  };
   CustomerAuthController_register: {
     parameters: {
       query?: never;
@@ -3292,6 +3922,156 @@ export interface operations {
       };
     };
   };
+  AdminCustomersController_list: {
+    parameters: {
+      query?: {
+        /** @description Email or name contains. */
+        q?: string;
+        status?: "ACTIVE" | "SUSPENDED" | "DELETED";
+        page?: number;
+        limit?: number;
+      };
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["AdminCustomerListDto"];
+        };
+      };
+    };
+  };
+  AdminCustomersController_get: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        id: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["AdminCustomerDetailDto"];
+        };
+      };
+    };
+  };
+  AdminCustomersController_suspend: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        id: string;
+      };
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ReasonDto"];
+      };
+    };
+    responses: {
+      204: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content?: never;
+      };
+    };
+  };
+  AdminCustomersController_reactivate: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        id: string;
+      };
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ReasonDto"];
+      };
+    };
+    responses: {
+      204: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content?: never;
+      };
+    };
+  };
+  AdminCustomersController_revokeAll: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        id: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      204: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content?: never;
+      };
+    };
+  };
+  AdminCustomersController_revokeOne: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        id: string;
+        sessionId: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      204: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content?: never;
+      };
+    };
+  };
+  AdminCustomersController_passwordReset: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        id: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      204: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content?: never;
+      };
+    };
+  };
   SubscriptionsController_list: {
     parameters: {
       query?: never;
@@ -3358,6 +4138,7 @@ export interface operations {
       query?: {
         status?:
           "ACTIVE" | "NON_RENEWING" | "PAST_DUE" | "CANCELLED" | "EXPIRED";
+        customerId?: string;
         /** @description Customer email or name contains. */
         q?: string;
         page?: number;
@@ -4405,6 +5186,96 @@ export interface operations {
       };
     };
   };
+  AdminEntitlementsController_list: {
+    parameters: {
+      query: {
+        customerId: string;
+      };
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["AdminEntitlementListDto"];
+        };
+      };
+    };
+  };
+  AdminEntitlementsController_grant: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["GrantEntitlementDto"];
+      };
+    };
+    responses: {
+      201: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["AdminEntitlementResponseDto"];
+        };
+      };
+    };
+  };
+  AdminEntitlementsController_productOptions: {
+    parameters: {
+      query?: {
+        q?: string;
+      };
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["ProductOptionListDto"];
+        };
+      };
+    };
+  };
+  AdminEntitlementsController_revoke: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        id: string;
+      };
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ReasonDto"];
+      };
+    };
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["AdminEntitlementResponseDto"];
+        };
+      };
+    };
+  };
   OrdersController_list: {
     parameters: {
       query?: {
@@ -4513,6 +5384,105 @@ export interface operations {
       };
     };
   };
+  AdminOrdersController_list: {
+    parameters: {
+      query?: {
+        /** @description Order reference or customer email contains. */
+        q?: string;
+        status?: "PENDING" | "PAID" | "FAILED" | "ABANDONED" | "REFUNDED";
+        kind?: "PURCHASE" | "SUBSCRIPTION_START" | "SUBSCRIPTION_RENEWAL";
+        customerId?: string;
+        /** @description "true": only orders flagged for staff review. */
+        needsReview?: string;
+        page?: number;
+        limit?: number;
+      };
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["AdminOrderListDto"];
+        };
+      };
+    };
+  };
+  AdminOrdersController_get: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        id: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["AdminOrderResponseDto"];
+        };
+      };
+    };
+  };
+  AdminPaymentsController_list: {
+    parameters: {
+      query?: {
+        /** @description Payment or order reference contains. */
+        q?: string;
+        status?:
+          "INITIALIZED" | "SUCCESS" | "FAILED" | "ABANDONED" | "REVERSED";
+        orderId?: string;
+        customerId?: string;
+        page?: number;
+        limit?: number;
+      };
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["AdminPaymentListDto"];
+        };
+      };
+    };
+  };
+  AdminPaymentsController_reverify: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        id: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["AdminPaymentResponseDto"];
+        };
+      };
+    };
+  };
   PlaybackController_start: {
     parameters: {
       query?: never;
@@ -4575,6 +5545,73 @@ export interface operations {
           [name: string]: unknown;
         };
         content?: never;
+      };
+    };
+  };
+  AnalyticsController_overview: {
+    parameters: {
+      query?: {
+        /** @description Last N days, including today (UTC). */
+        days?: 7 | 28 | 90 | 365;
+      };
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["AnalyticsOverviewDto"];
+        };
+      };
+    };
+  };
+  AdminWebhookEventsController_list: {
+    parameters: {
+      query?: {
+        provider?: "PAYSTACK" | "MUX";
+        status?: "RECEIVED" | "PROCESSED" | "IGNORED" | "FAILED";
+        page?: number;
+        limit?: number;
+      };
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["AdminWebhookEventListDto"];
+        };
+      };
+    };
+  };
+  AdminWebhookEventsController_get: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        id: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["AdminWebhookEventDetailDto"];
+        };
       };
     };
   };
